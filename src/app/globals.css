@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ═══════════════════════════════════════════════════════════════════
+   THEME — Tất cả custom design tokens
+   ═══════════════════════════════════════════════════════════════════ */
+@theme {
+  /* --- Bảng màu VESTA --- */
+  --color-royal: #1B2A5B;
+  --color-royal-mid: #243778;
+  --color-royal-light: #2E4494;
+  --color-navy: #0F1B3D;
+
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8D48B;
+  --color-gold-bright: #F0C832;
+
+  --color-silver: #B8C0CC;
+  --color-silver-light: #D8DCE4;
+
+  --color-cream: #FAF8F3;
+  --color-cream-dark: #F0EDE5;
+
+  --color-muted: #5A6178;
+
+  /* --- Font families ---
+     var(--font-cormorant) và var(--font-montserrat) được inject
+     bởi next/font/google trong layout.tsx */
+  --font-display: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-body: var(--font-montserrat), "Montserrat", sans-serif;
+
+  /* --- Keyframes --- */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  --animate-fade-up: fade-up 0.7s ease both;
+}
+
+/* ═══════════════════════ BASE ═══════════════════════ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-cream);
+    color: #1a1a2e;
+    line-height: 1.7;
+  }
+}
+
+/* ═══════════════════════ CUSTOM COMPONENTS ═══════════════════════ */
+@layer components {
+  /* Gold decorative line */
+  .gold-line {
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-gold),
+      var(--color-gold-light),
+      var(--color-gold),
+      transparent
+    );
+  }
+
+  /* Section title underline */
+  .section-title-underline::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    margin: 0.75rem auto 0;
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  }
+
+  /* Course card list diamond bullet */
+  .diamond-bullet {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.875rem;
+    line-height: 1.625;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .diamond-bullet::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    transform: rotate(45deg);
+    background: var(--color-gold);
+    opacity: 0.6;
+  }
+
+  /* Card accent bars */
+  .accent-blue {
+    background: linear-gradient(90deg, var(--color-royal), var(--color-royal-light));
+  }
+  .accent-gold {
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  }
+  .accent-silver {
+    background: linear-gradient(90deg, var(--color-silver), var(--color-silver-light));
+  }
+  .accent-mixed {
+    background: linear-gradient(90deg, var(--color-royal), var(--color-gold), var(--color-royal-light));
+  }
+
+  /* Badge variants */
+  .badge-target {
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    color: var(--color-navy);
+  }
+  .badge-special {
+    background: linear-gradient(135deg, var(--color-royal), var(--color-royal-light));
+    color: var(--color-gold-light);
+  }
+
+  /* Meta chips */
+  .chip-time {
+    background: color-mix(in srgb, var(--color-royal) 6%, transparent);
+    color: var(--color-royal);
+  }
+  .chip-price {
+    font-weight: 700;
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.05));
+    color: #8b7530;
+  }
+  .chip-schedule {
+    background: color-mix(in srgb, var(--color-silver) 20%, transparent);
+    color: var(--color-muted);
+  }
+
+  /* CTA Button */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.75rem;
+    color: var(--color-navy);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    letter-spacing: 0.04em;
+    transition: all 0.3s;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+    box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4);
+  }
+}
