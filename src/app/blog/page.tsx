@@ -34,7 +34,7 @@ function formatDate(dateStr: string) {
 function getImageUrl(url: string | null) {
   if (!url) return "";
   if (url.startsWith("http")) return url;
-  return `${API_URL?.replace("/api", "")}${url}`;
+  return `${API_URL?.replace(/\/api$/, "")}${url}`;
 }
 
 export default function BlogPage() {
