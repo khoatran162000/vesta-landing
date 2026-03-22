@@ -30,8 +30,8 @@ export default function EntranceTestPage() {
               title="Form đăng ký kiểm tra đầu vào" loading="lazy">Đang tải form...</iframe>
           ) : (
             <div className="rounded-xl border border-gold/20 bg-gold/5 px-8 py-12 text-center">
-              <p className="text-muted">Google Form chưa được cấu hình.<br />
-                Vui lòng thêm <code className="rounded bg-cream-dark px-2 py-0.5 text-sm">NEXT_PUBLIC_GOOGLE_FORM_TEST</code> vào file <code className="rounded bg-cream-dark px-2 py-0.5 text-sm">.env.local</code></p>
+              <p className="text-muted"><br />
+                Đang cập nhật<code className="rounded bg-cream-dark px-2 py-0.5 text-sm"></code>Form Đăng Ký<code className="rounded bg-cream-dark px-2 py-0.5 text-sm"></code></p>
             </div>
           )}
         </div>

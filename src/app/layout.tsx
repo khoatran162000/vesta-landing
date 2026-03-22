@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat, Cormorant_Garamond } from "next/font/google";
 import "@/styles/globals.css";
+import { FloatingCTA } from "@/components/layout/FloatingCTA";
+import { ContactPopup } from "@/components/layout/ContactPopup";
 
 const montserrat = Montserrat({
   subsets: ["latin", "vietnamese"],
@@ -40,7 +42,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className={`${montserrat.variable} ${cormorant.variable}`}>
-      <body className="font-body">{children}</body>
+      <body className="font-body">
+        {children}
+        <FloatingCTA />
+        <ContactPopup />
+      </body>
     </html>
   );
 }

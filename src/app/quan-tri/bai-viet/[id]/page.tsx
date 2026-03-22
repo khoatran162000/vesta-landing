@@ -1,123 +1,173 @@
 /**
  * FILE: page.tsx
  * PATH: apps/landing/src/app/quan-tri/bai-viet/[id]/page.tsx
- * MÔ TẢ: Chỉnh sửa bài viết — load data có sẵn vào form, cập nhật qua Zustand store
+ * MÔ TẢ: Chỉnh sửa bài viết — load dữ liệu từ API, cập nhật qua API
  */
- 
+
 "use client";
- 
+
 import { useState, useRef, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Save, ImagePlus, X, Plus } from "lucide-react";
+import { ArrowLeft, Save, ImagePlus, X, Plus, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { RichTextEditor } from "@/components/blog/RichTextEditor";
-import { usePostStore } from "@/lib/mockPosts";
- 
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+function getToken() {
+  return localStorage.getItem("accessToken") || "";
+}
+
 export default function EditPostPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
-  const { getById, update } = usePostStore();
-  const post = getById(id);
- 
+
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [status, setStatus] = useState<"DRAFT" | "PUBLISHED">("DRAFT");
-  const [thumbnail, setThumbnail] = useState("");
+  const [currentThumbnail, setCurrentThumbnail] = useState("");
+  const [newThumbnailFile, setNewThumbnailFile] = useState<File | null>(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState("");
+  const [slug, setSlug] = useState("");
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
   const thumbnailInputRef = useRef<HTMLInputElement>(null);
- 
-  // Load post data vào form
+
+  // Fetch post data
   useEffect(() => {
-    if (post && !loaded) {
-      setTitle(post.title);
-      setExcerpt(post.excerpt);
-      setContent(post.content);
-      setStatus(post.status);
-      setThumbnail(post.thumbnailUrl);
-      setTags([...post.tags]);
-      setLoaded(true);
+    async function fetchPost() {
+      try {
+        const res = await fetch(`${API_URL}/posts/admin/${id}`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        });
+        const data = await res.json();
+        if (data.success) {
+          const post = data.data;
+          setTitle(post.title);
+          setExcerpt(post.excerpt || "");
+          setContent(post.content);
+          setStatus(post.status);
+          setSlug(post.slug);
+          setTags(Array.isArray(post.tags) ? post.tags : []);
+          if (post.thumbnailUrl) {
+            const url = post.thumbnailUrl.startsWith("http")
+              ? post.thumbnailUrl
+              : `${API_URL?.replace("/api", "")}${post.thumbnailUrl}`;
+            setCurrentThumbnail(url);
+            setThumbnailPreview(url);
+          }
+          setLoaded(true);
+        } else {
+          setNotFound(true);
+        }
+      } catch {
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
     }
-  }, [post, loaded]);
- 
-  // === Tags ===
+    fetchPost();
+  }, [id]);
+
+  // Tags
   function addTag() {
     const tag = tagInput.trim();
     if (!tag || tags.includes(tag)) return;
     setTags([...tags, tag]);
     setTagInput("");
   }
- 
-  function removeTag(tag: string) {
-    setTags(tags.filter((t) => t !== tag));
-  }
- 
+  function removeTag(tag: string) { setTags(tags.filter((t) => t !== tag)); }
   function handleTagKeyDown(e: React.KeyboardEvent) {
-    if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault();
-      addTag();
-    }
+    if (e.key === "Enter" || e.key === ",") { e.preventDefault(); addTag(); }
   }
- 
-  // === Thumbnail ===
+
+  // Thumbnail
   function handleThumbnail(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
+    setNewThumbnailFile(file);
     const reader = new FileReader();
-    reader.onload = () => setThumbnail(reader.result as string);
+    reader.onload = () => setThumbnailPreview(reader.result as string);
     reader.readAsDataURL(file);
     e.target.value = "";
   }
- 
-  // === Save ===
-  function handleSave() {
+  function removeThumbnail() {
+    setNewThumbnailFile(null);
+    setThumbnailPreview("");
+    setCurrentThumbnail("");
+  }
+
+  // Save
+  async function handleSave() {
     if (!title.trim()) return;
     setSaving(true);
- 
-    update(id, {
-      title: title.trim(),
-      excerpt: excerpt.trim(),
-      content,
-      thumbnailUrl: thumbnail,
-      tags,
-      status,
-    });
- 
-    setTimeout(() => {
+    setError("");
+
+    try {
+      const formData = new FormData();
+      formData.append("title", title.trim());
+      formData.append("excerpt", excerpt.trim());
+      formData.append("content", content);
+      formData.append("tags", JSON.stringify(tags));
+      formData.append("status", status);
+      if (newThumbnailFile) formData.append("thumbnail", newThumbnailFile);
+
+      const res = await fetch(`${API_URL}/posts/${id}`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${getToken()}` },
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        router.push("/quan-tri/bai-viet");
+      } else {
+        setError(data.message || "Lỗi cập nhật bài viết");
+      }
+    } catch {
+      setError("Lỗi kết nối server");
+    } finally {
       setSaving(false);
-      router.push("/quan-tri/bai-viet");
-    }, 500);
+    }
   }
- 
+
+  // Loading
+  if (loading) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <Loader2 size={24} className="animate-spin text-gold" />
+      </div>
+    );
+  }
+
   // Not found
-  if (!post) {
+  if (notFound) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
         <div className="text-center">
           <h2 className="font-display text-2xl font-bold text-royal">Bài viết không tồn tại</h2>
           <p className="mt-2 text-muted">Bài viết với ID &quot;{id}&quot; không được tìm thấy.</p>
-          <Link href="/quan-tri/bai-viet" className="cta-btn mt-4 inline-flex text-sm">
-            <ArrowLeft size={16} />Quay lại danh sách
-          </Link>
+          <Link href="/quan-tri/bai-viet" className="cta-btn mt-4 inline-flex text-sm"><ArrowLeft size={16} />Quay lại danh sách</Link>
         </div>
       </div>
     );
   }
- 
+
   return (
     <div className="mx-auto max-w-[900px]">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link href="/quan-tri/bai-viet" className="rounded-lg p-2 text-muted transition-colors hover:bg-cream-dark hover:text-royal">
-            <ArrowLeft size={20} />
-          </Link>
+          <Link href="/quan-tri/bai-viet" className="rounded-lg p-2 text-muted transition-colors hover:bg-cream-dark hover:text-royal"><ArrowLeft size={20} /></Link>
           <div>
             <h2 className="font-display text-2xl font-bold text-royal">Chỉnh sửa bài viết</h2>
-            <p className="text-xs text-muted">ID: {id} · Slug: {post.slug}</p>
+            <p className="text-xs text-muted">Slug: {slug}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -126,13 +176,14 @@ export default function EditPostPage() {
             <option value="DRAFT">Bản nháp</option>
             <option value="PUBLISHED">Xuất bản</option>
           </select>
-          <button onClick={handleSave} disabled={saving || !title.trim()}
-            className="cta-btn gap-1.5 text-sm disabled:opacity-60">
+          <button onClick={handleSave} disabled={saving || !title.trim()} className="cta-btn gap-1.5 text-sm disabled:opacity-60">
             <Save size={16} />{saving ? "Đang lưu..." : "Cập nhật"}
           </button>
         </div>
       </div>
- 
+
+      {error && <p className="mb-6 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">{error}</p>}
+
       <div className="space-y-6">
         {/* Tiêu đề */}
         <div className="rounded-xl border border-silver/30 bg-white p-6">
@@ -140,54 +191,44 @@ export default function EditPostPage() {
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
             className="w-full rounded-lg border border-silver/40 bg-cream px-4 py-3 text-base outline-none transition-colors focus:border-gold focus:ring-1 focus:ring-gold/30" />
         </div>
- 
-        {/* Mô tả ngắn */}
+
+        {/* Excerpt */}
         <div className="rounded-xl border border-silver/30 bg-white p-6">
           <label className="mb-1.5 block text-sm font-medium text-royal">Mô tả ngắn (excerpt)</label>
-          <textarea value={excerpt} onChange={(e) => setExcerpt(e.target.value)}
-            placeholder="Tóm tắt nội dung bài viết trong 1-2 câu."
-            rows={3}
+          <textarea value={excerpt} onChange={(e) => setExcerpt(e.target.value)} rows={3} placeholder="Tóm tắt nội dung..."
             className="w-full resize-none rounded-lg border border-silver/40 bg-cream px-4 py-3 text-sm outline-none transition-colors focus:border-gold focus:ring-1 focus:ring-gold/30" />
           <p className="mt-1 text-xs text-muted">{excerpt.length}/300 ký tự</p>
         </div>
- 
+
         {/* Tags */}
         <div className="rounded-xl border border-silver/30 bg-white p-6">
           <label className="mb-1.5 block text-sm font-medium text-royal">Tags</label>
           <div className="flex flex-wrap items-center gap-2 rounded-lg border border-silver/40 bg-cream px-3 py-2">
             {tags.map((tag) => (
               <span key={tag} className="flex items-center gap-1 rounded-full bg-royal/10 px-3 py-1 text-xs font-semibold text-royal">
-                {tag}
-                <button onClick={() => removeTag(tag)} className="ml-0.5 rounded-full p-0.5 transition-colors hover:bg-royal/20">
-                  <X size={12} />
-                </button>
+                {tag}<button onClick={() => removeTag(tag)} className="ml-0.5 rounded-full p-0.5 hover:bg-royal/20"><X size={12} /></button>
               </span>
             ))}
-            <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)}
-              onKeyDown={handleTagKeyDown} placeholder="Thêm tag..."
-              className="min-w-[120px] flex-1 border-none bg-transparent py-1 text-sm outline-none" />
+            <input type="text" value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={handleTagKeyDown}
+              placeholder="Thêm tag..." className="min-w-[120px] flex-1 border-none bg-transparent py-1 text-sm outline-none" />
             {tagInput.trim() && (
-              <button onClick={addTag} className="rounded-full bg-gold/15 p-1.5 text-gold transition-colors hover:bg-gold/25">
-                <Plus size={14} />
-              </button>
+              <button onClick={addTag} className="rounded-full bg-gold/15 p-1.5 text-gold hover:bg-gold/25"><Plus size={14} /></button>
             )}
           </div>
         </div>
- 
+
         {/* Thumbnail */}
         <div className="rounded-xl border border-silver/30 bg-white p-6">
           <label className="mb-3 block text-sm font-medium text-royal">Ảnh đại diện (thumbnail)</label>
-          {thumbnail ? (
+          {thumbnailPreview ? (
             <div className="relative inline-block">
-              <img src={thumbnail} alt="Thumbnail" className="h-48 rounded-lg object-cover shadow-sm" />
-              <button onClick={() => setThumbnail("")}
-                className="absolute -right-2 -top-2 rounded-full bg-red-500 p-1 text-white shadow-md transition-transform hover:scale-110">
-                <X size={14} />
-              </button>
+              <img src={thumbnailPreview} alt="Thumbnail" className="h-48 rounded-lg object-cover shadow-sm" />
+              <button onClick={removeThumbnail}
+                className="absolute -right-2 -top-2 rounded-full bg-red-500 p-1 text-white shadow-md hover:scale-110"><X size={14} /></button>
             </div>
           ) : (
             <button onClick={() => thumbnailInputRef.current?.click()}
-              className="flex h-48 w-full items-center justify-center rounded-lg border-2 border-dashed border-silver/40 bg-cream transition-colors hover:border-gold/40 hover:bg-gold/5">
+              className="flex h-48 w-full items-center justify-center rounded-lg border-2 border-dashed border-silver/40 bg-cream hover:border-gold/40 hover:bg-gold/5">
               <div className="text-center">
                 <ImagePlus size={32} className="mx-auto mb-2 text-muted" />
                 <p className="text-sm font-medium text-muted">Bấm để chọn ảnh thumbnail</p>
@@ -196,8 +237,8 @@ export default function EditPostPage() {
           )}
           <input ref={thumbnailInputRef} type="file" accept="image/*" className="hidden" onChange={handleThumbnail} />
         </div>
- 
-        {/* Nội dung — TipTap Editor */}
+
+        {/* Content — TipTap */}
         <div className="rounded-xl border border-silver/30 bg-white p-6">
           <label className="mb-3 block text-sm font-medium text-royal">Nội dung bài viết</label>
           {loaded && <RichTextEditor content={content} onChange={setContent} />}
@@ -206,4 +247,3 @@ export default function EditPostPage() {
     </div>
   );
 }
- 

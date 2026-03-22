@@ -1,50 +1,87 @@
+/**
+ * FILE: Footer.tsx
+ * PATH: apps/landing/src/components/layout/Footer.tsx
+ * MÔ TẢ: Footer theo thiết kế khách hàng — nền đỏ, căn giữa, thông tin công ty + MST
+ */
+
 import { SITE_INFO } from "@/lib/constants";
 
 export function Footer() {
   return (
     <>
+      {/* Gold line trên cùng */}
       <div className="gold-line" />
-      <footer className="relative overflow-hidden" style={{ background: "linear-gradient(160deg, #0F1B3D 0%, #1B2A5B 100%)" }}>
-        <div className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 600px 300px at 50% 100%, rgba(201,168,76,0.05) 0%, transparent 70%)" }} />
 
-        <div className="relative z-10 mx-auto grid max-w-[1200px] grid-cols-1 gap-10 px-8 pb-9 pt-[50px] md:grid-cols-[1.5fr_1fr_1fr]">
-          <div>
-            <h4 className="font-display text-[1.6rem] tracking-[0.12em] text-gold">{SITE_INFO.name}</h4>
-            <p className="mb-4 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-silver">Học Nhanh · Thi Chắc · Since 2012</p>
-            <p className="text-[0.82rem] leading-[1.7] text-white/70">Trung tâm luyện thi IELTS uy tín tại Hà Nội. Cam kết đầu ra, phương pháp giảng dạy hiệu quả, lộ trình cá nhân hoá cho từng học viên.</p>
-          </div>
-          <div>
-            <h5 className="mb-4 text-[0.75rem] font-bold uppercase tracking-[0.15em] text-gold">Liên Hệ</h5>
-            <p className="py-1 text-[0.84rem] leading-relaxed text-white/70">📍 {SITE_INFO.address}</p>
-            <FL href={SITE_INFO.phoneHref}>📞 {SITE_INFO.phone}</FL>
-            <FL href={`mailto:${SITE_INFO.email}`}>✉ {SITE_INFO.email}</FL>
-            <FL href={SITE_INFO.websiteHref} ext>🌐 {SITE_INFO.website}</FL>
-          </div>
-          <div>
-            <h5 className="mb-4 text-[0.75rem] font-bold uppercase tracking-[0.15em] text-gold">Liên Kết</h5>
-            <FL href={SITE_INFO.facebookHref} ext>Facebook: {SITE_INFO.facebook}</FL>
-            <FL href={SITE_INFO.registerLink} ext>📋 Đăng ký học</FL>
-            <FL href={SITE_INFO.achievementsLink} ext>🏅 Thành tích học sinh</FL>
-          </div>
-        </div>
+      <footer className="relative overflow-hidden" style={{ background: "linear-gradient(160deg, #A31D2B 0%, #BF2636 50%, #C93040 100%)" }}>
+        <div className="mx-auto max-w-[1200px] px-8 py-5">
 
-        <div className="relative z-10 mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-3 border-t border-gold/15 px-8 py-5">
-          <p className="text-[0.75rem] text-white/50">
-            © 2012–2026 VESTA Academy. Học nhanh — Thi chắc.
-          <a href="/quan-tri/dang-nhap" className="ml-3 text-white/30 transition-colors hover:text-gold/50">
-            Quản trị
-          </a>
+          {/* Tên công ty + MST */}
+          <div className="text-center">
+            <h4 className="font-display text-lg font-bold uppercase tracking-[0.12em] text-white">
+              Công ty TNHH VESTA UNI — MST: 0111130332
+            </h4>
+            <p className="mt-1.5 text-[0.85rem] text-white/80">
+              60 Hoàng Quốc Việt, Cầu Giấy, Hà Nội
+            </p>
+          </div>
+
+          {/* Contact row */}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <ContactItem icon="🌐" color="#4CAF50" href={SITE_INFO.websiteHref} external>
+              {SITE_INFO.website}
+            </ContactItem>
+            <ContactItem icon="✉" color="#2196F3" href={`mailto:${SITE_INFO.email}`}>
+              {SITE_INFO.email}
+            </ContactItem>
+            <ContactItem icon="📞" color="#4CAF50" href={SITE_INFO.phoneHref}>
+              Phone + Zalo: {SITE_INFO.phone}
+            </ContactItem>
+            <ContactItem icon="f" color="#1877F2" href={SITE_INFO.facebookHref} external>
+              Facebook: {SITE_INFO.facebook}
+            </ContactItem>
+          </div>
+
+          {/* Divider */}
+          <div className="mx-auto mt-7 h-px w-full max-w-[800px] bg-white/20" />
+
+          {/* Tagline */}
+          <p className="mt-5 text-center font-display text-[1rem] font-bold uppercase tracking-[0.25em] text-gold">
+            VESTA UNI — Fast Track to High Scores
           </p>
-          <a href={SITE_INFO.registerLink} target="_blank" rel="noopener noreferrer" className="cta-btn">✦ Đăng Ký Ngay</a>
+
         </div>
       </footer>
     </>
   );
 }
 
-function FL({ href, ext, children }: { href: string; ext?: boolean; children: React.ReactNode }) {
+function ContactItem({
+  icon,
+  color,
+  href,
+  external,
+  children,
+}: {
+  icon: string;
+  color: string;
+  href: string;
+  external?: boolean;
+  children: React.ReactNode;
+}) {
   return (
-    <a href={href} target={ext ? "_blank" : undefined} rel={ext ? "noopener noreferrer" : undefined}
-      className="block py-1 text-[0.84rem] leading-relaxed text-white/70 transition-colors hover:text-gold-light">{children}</a>
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="flex items-center gap-2 text-[0.82rem] text-white/90 transition-colors hover:text-white"
+    >
+      <span
+        className="flex h-5 w-5 items-center justify-center rounded-sm text-[0.6rem] text-white"
+        style={{ backgroundColor: color }}
+      >
+        {icon}
+      </span>
+      {children}
+    </a>
   );
 }

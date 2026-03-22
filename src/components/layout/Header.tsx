@@ -11,13 +11,13 @@ export function Header() {
   return (
     <>
       <div className="gold-line" />
-      <header className="relative overflow-hidden bg-linear-to-br from-navy via-royal to-royal-mid">
+      <header className="relative overflow-hidden" style={{ background: "linear-gradient(160deg, #A31D2B 0%, #BF2636 50%, #C93040 100%)" }}>
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background: `
-              radial-gradient(ellipse 600px 400px at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
-              radial-gradient(ellipse 500px 500px at 80% 30%, rgba(184,192,204,0.06) 0%, transparent 70%)
+              radial-gradient(ellipse 600px 400px at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 70%),
+              radial-gradient(ellipse 500px 500px at 80% 30%, rgba(255,255,255,0.03) 0%, transparent 70%)
             `,
           }}
         />
@@ -25,15 +25,11 @@ export function Header() {
         {/* Top bar */}
         <div className="relative z-10 mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-5 px-8 py-6">
           <Link href="/" className="flex items-center gap-4">
-            <div
-              className="flex h-16 w-16 items-center justify-center rounded-full text-[1.6rem]"
-              style={{
-                background: "linear-gradient(135deg, #C9A84C, #E8D48B)",
-                boxShadow: "0 0 20px rgba(201,168,76,0.3)",
-              }}
-            >
-              🔥
-            </div>
+            <img
+              src="/images/logo.jpg"
+              alt="VESTA UNI Logo"
+              className="h-16 w-16 rounded-xl object-contain"
+            />
             <div>
               <h1 className="font-display text-[2rem] font-bold leading-none tracking-[0.15em] text-gold">
                 {SITE_INFO.name}
