@@ -1,87 +1,57 @@
-/**
- * FILE: Footer.tsx
- * PATH: apps/landing/src/components/layout/Footer.tsx
- * MÔ TẢ: Footer theo thiết kế khách hàng — nền đỏ, căn giữa, thông tin công ty + MST
- */
+// FILE: src/components/layout/Footer.tsx — Footer theo design moi
 
 import { SITE_INFO } from "@/lib/constants";
 
 export function Footer() {
   return (
     <>
-      {/* Gold line trên cùng */}
-      <div className="gold-line" />
-
-      <footer className="relative overflow-hidden" style={{ background: "linear-gradient(160deg, #A31D2B 0%, #BF2636 50%, #C93040 100%)" }}>
-        <div className="mx-auto max-w-[1200px] px-8 py-5">
+      <footer className="relative overflow-hidden" style={{ background: "linear-gradient(160deg, #6B1520 0%, #8B1E2B 50%, #A31D2B 100%)" }}>
+        <div className="mx-auto max-w-[1200px] px-8 py-6">
 
           {/* Tên công ty + MST */}
           <div className="text-center">
-            <h4 className="font-display text-lg font-bold uppercase tracking-[0.12em] text-white">
+            <h4 className="font-display text-[0.9rem] font-bold uppercase tracking-[0.15em] text-white">
               Công ty TNHH VESTA UNI — MST: 0111130332
             </h4>
-            <p className="mt-1.5 text-[0.85rem] text-white/80">
+            <p className="mt-1 text-[0.8rem] text-white/70">
               60 Hoàng Quốc Việt, Cầu Giấy, Hà Nội
             </p>
           </div>
 
           {/* Contact row */}
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-            <ContactItem icon="🌐" color="#4CAF50" href={SITE_INFO.websiteHref} external>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2">
+            <a href={SITE_INFO.websiteHref} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[0.78rem] text-white/80 transition-colors hover:text-white">
+              <span className="inline-block h-2 w-2 rounded-full bg-green-400" />
               {SITE_INFO.website}
-            </ContactItem>
-            <ContactItem icon="✉" color="#2196F3" href={`mailto:${SITE_INFO.email}`}>
+            </a>
+            <a href={`mailto:${SITE_INFO.email}`}
+              className="flex items-center gap-1.5 text-[0.78rem] text-white/80 transition-colors hover:text-white">
+              <span className="inline-block h-2 w-2 rounded-full bg-blue-400" />
               {SITE_INFO.email}
-            </ContactItem>
-            <ContactItem icon="📞" color="#4CAF50" href={SITE_INFO.phoneHref}>
+            </a>
+            <a href={SITE_INFO.phoneHref}
+              className="flex items-center gap-1.5 text-[0.78rem] text-white/80 transition-colors hover:text-white">
+              <span className="inline-block h-2 w-2 rounded-full bg-green-400" />
               Phone + Zalo: {SITE_INFO.phone}
-            </ContactItem>
-            <ContactItem icon="f" color="#1877F2" href={SITE_INFO.facebookHref} external>
+            </a>
+            <a href={SITE_INFO.facebookHref} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[0.78rem] text-white/80 transition-colors hover:text-white">
+              <span className="inline-block h-2 w-2 rounded-full bg-blue-400" />
               Facebook: {SITE_INFO.facebook}
-            </ContactItem>
+            </a>
           </div>
 
           {/* Divider */}
-          <div className="mx-auto mt-7 h-px w-full max-w-[800px] bg-white/20" />
+          <div className="mx-auto mt-5 h-px w-full max-w-[800px] bg-white/20" />
 
           {/* Tagline */}
-          <p className="mt-5 text-center font-display text-[1rem] font-bold uppercase tracking-[0.25em] text-gold">
+          <p className="mt-4 pb-1 text-center font-display text-[0.85rem] font-bold uppercase tracking-[0.25em] text-gold">
             VESTA UNI — Fast Track to High Scores
           </p>
 
         </div>
       </footer>
     </>
-  );
-}
-
-function ContactItem({
-  icon,
-  color,
-  href,
-  external,
-  children,
-}: {
-  icon: string;
-  color: string;
-  href: string;
-  external?: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className="flex items-center gap-2 text-[0.82rem] text-white/90 transition-colors hover:text-white"
-    >
-      <span
-        className="flex h-5 w-5 items-center justify-center rounded-sm text-[0.6rem] text-white"
-        style={{ backgroundColor: color }}
-      >
-        {icon}
-      </span>
-      {children}
-    </a>
   );
 }

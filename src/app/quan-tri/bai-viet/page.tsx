@@ -166,7 +166,7 @@ export default function PostListPage() {
                   <td className="px-5 py-4">
                     <div className="flex items-start gap-3">
                       {post.thumbnailUrl && (
-                        <img src={post.thumbnailUrl.startsWith("http") ? post.thumbnailUrl : `${API_URL?.replace(/\/api$/, "")}${post.thumbnailUrl}`}
+                        <img src={post.thumbnailUrl.startsWith("http") ? post.thumbnailUrl : `${API_URL?.replace("/api", "")}${post.thumbnailUrl}`}
                           alt="" className="hidden h-12 w-20 shrink-0 rounded-lg object-cover sm:block" />
                       )}
                       <div className="min-w-0">

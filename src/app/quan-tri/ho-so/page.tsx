@@ -174,7 +174,7 @@ export default function ProfilePage() {
         <div className="flex items-center gap-5">
           <div className="relative">
             {user.avatarUrl ? (
-              <img src={user.avatarUrl.startsWith("http") ? user.avatarUrl : `${API_URL?.replace(/\/api$/, "")}${user.avatarUrl}`} alt={user.fullName}
+              <img src={user.avatarUrl.startsWith("http") ? user.avatarUrl : `${API_URL?.replace("/api", "")}${user.avatarUrl}`} alt={user.fullName}
                 className="h-20 w-20 rounded-full object-cover" />
             ) : (
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-royal/10 font-display text-2xl font-bold text-royal">

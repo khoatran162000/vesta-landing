@@ -11,7 +11,7 @@ export function Header() {
   return (
     <>
       <div className="gold-line" />
-      <header className="relative overflow-hidden" style={{ background: "linear-gradient(160deg, #A31D2B 0%, #BF2636 50%, #C93040 100%)" }}>
+      <header className="relative overflow-hidden" style={{ background: "linear-gradient(160deg, #6B1520 0%, #8B1E2B 50%, #A31D2B 100%)" }}>
         <div
           className="pointer-events-none absolute inset-0"
           style={{
