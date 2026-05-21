@@ -1,9 +1,24 @@
-// FILE: src/components/landing/CourseSection.tsx — Cac khoa hoc (chinh xac theo screenshots)
-
+// FILE: src/components/landing/CourseSection.tsx — Thêm Luyện Thi Chuyên Cấp 3
 import { ScrollReveal } from "./ScrollReveal";
 
-/* ═══════ FULL WIDTH COURSES (badge trong header) ═══════ */
+/* ═══════ FULL WIDTH COURSES ═══════ */
 const FULL_COURSES = [
+  {
+    title: "LUYỆN THI CHUYÊN CẤP 3",
+    badge: "LỚP 7-9",
+    isSpecial: true,
+    features: [
+      { icon: "🎯", text: "Dành cho học sinh lớp 7-9" },
+      { icon: "📚", text: "Học theo lộ trình 3 chặng: B2 → C1, C2 → Luyện đề chuyên" },
+      { icon: "✏️", text: "Rèn IELTS Writing, CAE Writing, Reading, Listening, Use of English, kết hợp luyện đề chuyên Sở, chuyên Quốc gia." },
+      { icon: "💡", text: "Sau mỗi 7 buổi có Progress Test. Phụ huynh nhận báo cáo kết quả hằng tháng. Có gia sư/mentor ốp bài, nhắc bài và theo sát việc học ở nhà." },
+      { icon: "🎯", text: "Chuẩn đầu ra định hướng: C1-C2, tương đương IELTS 7+, Cambridge Advanced, đề chuyên Sở và chuyên Quốc gia." },
+      { icon: "👩‍🏫", text: "Giảng dạy bởi Ms. Ly Le, cựu giáo viên Hà Nội - Amsterdam, cựu giảng viên ULIS, cựu giám khảo hỏi thi nói Cambridge KET/PET, IELTS 8.5, Speaking 9.0, 16 năm kinh nghiệm, đồng tác giả 2 cuốn sách: bài luận mẫu cho học sinh chuyên." },
+    ],
+    scheduleLabel: "HỌC PHÍ",
+    schedule: "280.000 VND/buổi 2.5 tiếng · 2.240.000 VND/tháng",
+    price: "Đóng 2 trình: giảm 5% · Đóng trọn 3 trình: giảm 15%, còn 45.696.000 VND",
+  },
   {
     title: "IELTS 5+",
     badge: "CẤP TỐC 10 TUẦN",
@@ -78,7 +93,7 @@ const FULL_COURSES = [
   },
 ];
 
-/* ═══════ HALF WIDTH COURSES (badge DƯỚI header, bên trái) ═══════ */
+/* ═══════ HALF WIDTH COURSES ═══════ */
 const HALF_COURSES = [
   {
     title: "Viết / Nói — Phá Tắc Band",
@@ -106,12 +121,10 @@ const HALF_COURSES = [
   },
 ];
 
-/* ═══════ HỖ TRỢ ĐĂNG KÝ THI (header khác) ═══════ */
+/* ═══════ HỖ TRỢ ĐĂNG KÝ THI ═══════ */
 const SUPPORT_COURSE = {
   title: "Hỗ Trợ Đăng Ký Thi IELTS",
-  headerIcon: "🎓",
   badge: "ƯU ĐÃI",
-  badgeOutline: true,
   features: [
     { icon: "📝", text: "Đăng ký thi IELTS tại BC & IDP." },
     { icon: "🖥️", text: "Chọn ca thi Speaking phù hợp." },
@@ -131,16 +144,12 @@ export function CourseSection() {
         </div>
         <div className="h-[2px] w-full" style={{ background: "linear-gradient(90deg, #C9A84C, #E8D48B)" }} />
       </div>
-
       <div className="mx-auto max-w-[960px] space-y-7 pb-8">
-        {/* Full width courses */}
         {FULL_COURSES.map((course, i) => (
           <ScrollReveal key={i} delay={i * 0.05}>
             <FullCourseCard course={course} />
           </ScrollReveal>
         ))}
-
-        {/* Half width courses — side by side */}
         <ScrollReveal>
           <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
             {HALF_COURSES.map((course, i) => (
@@ -148,8 +157,6 @@ export function CourseSection() {
             ))}
           </div>
         </ScrollReveal>
-
-        {/* Hỗ Trợ Đăng Ký Thi */}
         <ScrollReveal>
           <SupportCard />
         </ScrollReveal>
@@ -158,12 +165,10 @@ export function CourseSection() {
   );
 }
 
-/* ═══════ FULL WIDTH CARD ═══════ */
 function FullCourseCard({ course }: { course: any }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-silver/30 bg-white shadow-[0_2px_20px_rgba(15,27,61,0.06)]">
-      {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4" style={{ background: "linear-gradient(135deg, #0F1B3D, #1B2A5B)" }}>
+      <div className="flex items-center justify-between px-6 py-4" style={{ background: course.isSpecial ? "linear-gradient(135deg, #7B1520, #A31D2B)" : "linear-gradient(135deg, #0F1B3D, #1B2A5B)" }}>
         <h4 className="flex items-center gap-2 font-display text-[1.5rem] font-bold text-white">
           <span>📜</span> {course.title}
         </h4>
@@ -174,8 +179,6 @@ function FullCourseCard({ course }: { course: any }) {
           {course.badge}
         </span>
       </div>
-
-      {/* Body */}
       <div className="px-6 py-5">
         <ul className="space-y-2.5">
           {course.features.map((feat: any, i: number) => (
@@ -185,14 +188,11 @@ function FullCourseCard({ course }: { course: any }) {
             </li>
           ))}
         </ul>
-
         {course.commitment && (
           <p className="mt-4 flex items-center gap-2 text-[0.88rem] font-bold text-[#1a1a2e]">
             <span>🎯</span> {course.commitment}
           </p>
         )}
-
-        {/* Schedule + Price */}
         {(course.schedule || course.price) && (
           <div className="mt-5 flex flex-wrap items-end justify-between gap-4 border-t border-silver/20 pt-4">
             {course.schedule && (
@@ -203,8 +203,8 @@ function FullCourseCard({ course }: { course: any }) {
             )}
             {course.price && (
               <div>
-                <p className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">HỌC PHÍ</p>
-                <p className="mt-1 font-display text-[1.2rem] font-bold italic" style={{ color: "#C93040" }}>
+                {!course.isSpecial && <p className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">HỌC PHÍ</p>}
+                <p className="mt-1 font-display text-[1.1rem] font-bold italic" style={{ color: "#C93040" }}>
                   {course.price}
                 </p>
                 {course.onlinePrice && <p className="text-[0.78rem] text-muted">({course.onlinePrice})</p>}
@@ -212,13 +212,9 @@ function FullCourseCard({ course }: { course: any }) {
             )}
           </div>
         )}
-
-        {/* CTA for 1-1 */}
         {course.cta && (
           <p className="mt-5 text-center text-[0.95rem] text-gold">
-            <a href="#registration" className="font-semibold underline underline-offset-2 hover:text-royal transition-colors">
-              {course.cta}
-            </a>
+            <a href="#registration" className="font-semibold underline underline-offset-2 hover:text-royal transition-colors">{course.cta}</a>
           </p>
         )}
       </div>
@@ -226,11 +222,9 @@ function FullCourseCard({ course }: { course: any }) {
   );
 }
 
-/* ═══════ HALF WIDTH CARD (badge DƯỚI header, bên trái) ═══════ */
 function HalfCourseCard({ course }: { course: any }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-silver/30 bg-white shadow-[0_2px_20px_rgba(15,27,61,0.06)]">
-      {/* Header — title + badge bên dưới */}
       <div className="px-6 pb-4 pt-5" style={{ background: "linear-gradient(135deg, #0F1B3D, #1B2A5B)" }}>
         <h4 className="flex items-center gap-2 font-display text-[1.3rem] font-bold text-white">
           <span>📜</span> {course.title}
@@ -240,8 +234,6 @@ function HalfCourseCard({ course }: { course: any }) {
           {course.badge}
         </span>
       </div>
-
-      {/* Body */}
       <div className="px-6 py-5">
         <ul className="space-y-2.5">
           {course.features.map((feat: any, i: number) => (
@@ -251,7 +243,6 @@ function HalfCourseCard({ course }: { course: any }) {
             </li>
           ))}
         </ul>
-
         {(course.schedule || course.price) && (
           <div className="mt-5 border-t border-silver/20 pt-4">
             {course.schedule && (
@@ -263,9 +254,7 @@ function HalfCourseCard({ course }: { course: any }) {
             {course.price && (
               <div>
                 <p className="text-[0.65rem] font-bold uppercase tracking-widest text-muted">HỌC PHÍ</p>
-                <p className="mt-1 font-display text-[1.2rem] font-bold italic" style={{ color: "#C93040" }}>
-                  {course.price}
-                </p>
+                <p className="mt-1 font-display text-[1.2rem] font-bold italic" style={{ color: "#C93040" }}>{course.price}</p>
               </div>
             )}
           </div>
@@ -275,7 +264,6 @@ function HalfCourseCard({ course }: { course: any }) {
   );
 }
 
-/* ═══════ SUPPORT CARD (Hỗ Trợ Đăng Ký Thi) ═══════ */
 function SupportCard() {
   return (
     <div className="overflow-hidden rounded-2xl border border-silver/30 bg-white shadow-[0_2px_20px_rgba(15,27,61,0.06)]">
@@ -287,7 +275,6 @@ function SupportCard() {
           {SUPPORT_COURSE.badge}
         </span>
       </div>
-
       <div className="px-6 py-5">
         <ul className="space-y-2.5">
           {SUPPORT_COURSE.features.map((feat, i) => (
@@ -297,12 +284,9 @@ function SupportCard() {
             </li>
           ))}
         </ul>
-
         <p className="mt-5 text-center text-[1rem]">
           <span className="text-gold">💰</span>{" "}
-          <span className="font-display text-[1.2rem] font-bold italic" style={{ color: "#C93040" }}>
-            {SUPPORT_COURSE.specialPrice}
-          </span>{" "}
+          <span className="font-display text-[1.2rem] font-bold italic" style={{ color: "#C93040" }}>{SUPPORT_COURSE.specialPrice}</span>{" "}
           <span className="text-[0.88rem] text-muted">({SUPPORT_COURSE.originalPrice})</span>
         </p>
       </div>
