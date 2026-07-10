@@ -103,7 +103,13 @@ function FullCourseCard({ course }: { course: any }) {
         )}
         {course.cta && (
           <p className="mt-5 text-center text-[0.95rem] text-gold">
-            <a href="#registration" className="font-semibold underline underline-offset-2 hover:text-royal transition-colors">{course.cta}</a>
+            <a
+              href={course.ctaLink || "#registration"}
+              {...(course.ctaLink?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="font-semibold underline underline-offset-2 hover:text-royal transition-colors"
+            >
+              {course.cta}
+            </a>
           </p>
         )}
       </div>
