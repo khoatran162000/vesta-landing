@@ -2,6 +2,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
+import { ClassAvailability } from "./ClassAvailability";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -112,6 +113,7 @@ function FullCourseCard({ course }: { course: any }) {
             </a>
           </p>
         )}
+        <ClassAvailability level={course.level} />
       </div>
     </div>
   );
