@@ -44,13 +44,18 @@ export function ClassAvailability({ level }: { level?: string | null }) {
                     {[cl.schedule, cl.teacher].filter(Boolean).join(" • ")}
                   </p>
                 </div>
-                {cl.isFull ? (
-                  <span className="shrink-0 rounded-full bg-silver/30 px-3 py-1 text-[0.7rem] font-bold uppercase text-muted">Đã đầy</span>
-                ) : cl.slotsLeft !== null ? (
-                  <span className="shrink-0 rounded-full bg-green-50 px-3 py-1 text-[0.7rem] font-bold uppercase text-green-700">Còn {cl.slotsLeft} chỗ</span>
-                ) : (
-                  <span className="shrink-0 rounded-full bg-royal/8 px-3 py-1 text-[0.7rem] font-bold uppercase text-royal">Đang nhận</span>
-                )}
+                <div className="flex shrink-0 items-center gap-1.5">
+                  {cl.status === "ENROLL_CLOSED" && (
+                    <span className="rounded-full bg-amber-50 px-3 py-1 text-[0.7rem] font-bold uppercase text-amber-700">Hết hạn ĐK</span>
+                  )}
+                  {cl.isFull ? (
+                    <span className="rounded-full bg-silver/30 px-3 py-1 text-[0.7rem] font-bold uppercase text-muted">Đã đầy</span>
+                  ) : cl.slotsLeft !== null ? (
+                    <span className="rounded-full bg-green-50 px-3 py-1 text-[0.7rem] font-bold uppercase text-green-700">Còn {cl.slotsLeft} chỗ</span>
+                  ) : (
+                    <span className="rounded-full bg-royal/8 px-3 py-1 text-[0.7rem] font-bold uppercase text-royal">Đang nhận</span>
+                  )}
+                </div>
               </div>
             ))
           )}
