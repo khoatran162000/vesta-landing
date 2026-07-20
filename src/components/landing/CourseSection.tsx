@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { ClassAvailability } from "./ClassAvailability";
+import Link from "next/link";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -104,13 +105,17 @@ function FullCourseCard({ course }: { course: any }) {
         )}
         {course.cta && (
           <p className="mt-5 text-center text-[0.95rem] text-gold">
-            <a
-              href={course.ctaLink || "#registration"}
-              {...(course.ctaLink?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="font-semibold underline underline-offset-2 hover:text-royal transition-colors"
-            >
-              {course.cta}
-            </a>
+            {course.ctaLink?.startsWith("http") ? (
+              <a href={course.ctaLink} target="_blank" rel="noopener noreferrer"
+                className="font-semibold underline underline-offset-2 hover:text-royal transition-colors">
+                {course.cta}
+              </a>
+            ) : (
+              <Link href={course.ctaLink || "#registration"}
+                className="font-semibold underline underline-offset-2 hover:text-royal transition-colors">
+                {course.cta}
+              </Link>
+            )}
           </p>
         )}
         <ClassAvailability level={course.level} />
