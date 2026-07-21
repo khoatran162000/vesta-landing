@@ -1,20 +1,22 @@
 // FILE: src/components/landing/HeroBanner.tsx — Banner (fetch động, fallback mặc định)
 "use client";
 import { useEffect, useState } from "react";
-import { fetchBlock } from "@/lib/siteContent";
-
+import { fetchBlock, resolveUrl } from "@/lib/siteContent";
 const DEFAULT = { title: "VESTA UNI", subtitle: "Fast Track to High Scores" };
-
 export function HeroBanner() {
   const [d, setD] = useState(DEFAULT);
-  useEffect(() => { fetchBlock("hero").then((data) => { if (data) setD({ ...DEFAULT, ...data }); }); }, []);
+  const [logo, setLogo] = useState("/images/logo.jpg");
+  useEffect(() => {
+    fetchBlock("hero").then((data) => { if (data) setD({ ...DEFAULT, ...data }); });
+    fetchBlock("logo").then((data) => { if (data?.logoUrl) setLogo(resolveUrl(data.logoUrl)); });
+  }, []);
   return (
     <section className="relative overflow-hidden"
       style={{ background: "linear-gradient(135deg, #5A0A14 0%, #7B1520 30%, #8B1E2B 50%, #9B2535 70%, #A31D2B 100%)" }}>
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{ background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%)" }} />
       <div className="relative z-10 flex items-center justify-center gap-5 px-8 py-8">
-        <img src="/images/logo.jpg" alt="VESTA Logo" className="h-[70px] w-[70px] object-contain" />
+        <img src={logo} alt="VESTA Logo" className="h-[70px] w-[70px] object-contain" />
         <div>
           <h1 className="font-display text-[2.2rem] font-bold uppercase tracking-[0.12em] text-white leading-tight">{d.title}</h1>
           <p className="font-display text-[0.85rem] font-medium uppercase tracking-[0.3em] text-gold">{d.subtitle}</p>
