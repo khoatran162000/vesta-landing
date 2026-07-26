@@ -1,20 +1,16 @@
-// FILE: src/app/dat-lich-tu-van/page.tsx — Đặt lịch tư vấn (gửi về email GV)
+// FILE: src/app/dat-lich-tu-van/page.tsx — Kiểm tra trình độ miễn phí (gửi về email GV + lưu DB)
 "use client";
 import { useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Loader2, CheckCircle, Send, Phone, Mail, MapPin } from "lucide-react";
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function ConsultationPage() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", question: "", preferredTime: "" });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
-
   const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }));
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name || !form.phone) {
@@ -40,7 +36,6 @@ export default function ConsultationPage() {
     }
     setLoading(false);
   }
-
   return (
     <>
       <Header />
@@ -48,11 +43,10 @@ export default function ConsultationPage() {
         <div className="grid gap-8 lg:grid-cols-5">
           {/* Left — Info */}
           <div className="lg:col-span-2">
-            <h2 className="font-display text-[2rem] font-bold text-royal">📅 Đặt Lịch Tư Vấn</h2>
+            <h2 className="font-display text-[2rem] font-bold text-royal">📝 Kiểm Tra Trình Độ Miễn Phí</h2>
             <p className="mt-3 text-[0.9rem] leading-relaxed text-muted">
-              Điền thông tin bên dưới, giáo viên sẽ liên hệ tư vấn lộ trình IELTS phù hợp nhất cho bạn.
+              Mời bạn điền thông tin để nhận bài kiểm tra trình độ miễn phí. Bài kiểm tra là đề thi IELTS thật/dự đoán để đo chính xác năng lực IELTS của bạn. Bạn cũng có thể để thêm yêu cầu tư vấn mà không cần kiểm tra.
             </p>
-
             <div className="mt-8 space-y-4">
               <div className="flex items-start gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-royal/10">
@@ -84,7 +78,6 @@ export default function ConsultationPage() {
               </div>
             </div>
           </div>
-
           {/* Right — Form */}
           <div className="lg:col-span-3">
             {sent ? (
@@ -92,7 +85,7 @@ export default function ConsultationPage() {
                 <CheckCircle size={48} className="mx-auto mb-4 text-green-600" />
                 <h3 className="font-display text-xl font-bold text-green-800">Đã gửi thành công!</h3>
                 <p className="mt-2 text-sm text-green-700">
-                  Giáo viên sẽ liên hệ bạn trong thời gian sớm nhất. Cảm ơn bạn đã quan tâm đến VESTA UNI!
+                  Giáo viên sẽ liên hệ bạn trong thời gian sớm nhất để gửi bài kiểm tra trình độ và tư vấn lộ trình. Cảm ơn bạn đã quan tâm đến VESTA UNI!
                 </p>
                 <button
                   onClick={() => {
@@ -107,15 +100,13 @@ export default function ConsultationPage() {
             ) : (
               <form onSubmit={handleSubmit} className="overflow-hidden rounded-2xl border border-silver/20 bg-white shadow-sm">
                 <div className="px-7 py-5" style={{ background: "linear-gradient(135deg, #0F1B3D, #1B2A5B)" }}>
-                  <h3 className="font-display text-lg font-bold text-white">Thông tin liên hệ</h3>
-                  <p className="mt-1 text-[0.75rem] text-white/50">Điền form → Giáo viên liên hệ tư vấn miễn phí</p>
+                  <h3 className="font-display text-lg font-bold text-white">Nhận bài kiểm tra trình độ và tư vấn</h3>
+                  <p className="mt-1 text-[0.75rem] text-white/50">Điền form → Giáo viên gửi bài kiểm tra & tư vấn miễn phí</p>
                 </div>
-
                 <div className="space-y-4 p-7">
                   {error && (
                     <div className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-600">{error}</div>
                   )}
-
                   <div>
                     <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-muted">
                       Họ và tên <span className="text-red-500">*</span>
@@ -151,10 +142,9 @@ export default function ConsultationPage() {
                   <div>
                     <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-muted">Câu hỏi / Nội dung cần tư vấn</label>
                     <textarea value={form.question} onChange={(e) => set("question", e.target.value)} rows={4}
-                      placeholder="VD: Em muốn hỏi về khoá IELTS 7+, lịch học và mức phí..."
+                      placeholder="VD: Em muốn nhận bài kiểm tra trình độ, hoặc hỏi về khoá IELTS 7+, lịch học và mức phí..."
                       className="w-full resize-none rounded-lg border border-silver/40 px-4 py-2.5 text-sm outline-none focus:border-gold focus:ring-1 focus:ring-gold/30" />
                   </div>
-
                   <button type="submit" disabled={loading}
                     className="flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-bold text-white shadow-lg transition-all hover:shadow-xl disabled:opacity-60"
                     style={{ background: "linear-gradient(135deg, #0F1B3D, #1B2A5B)" }}>
@@ -164,7 +154,7 @@ export default function ConsultationPage() {
                       </>
                     ) : (
                       <>
-                        <Send size={16} />Gửi yêu cầu tư vấn
+                        <Send size={16} />Nhận bài kiểm tra & tư vấn
                       </>
                     )}
                   </button>

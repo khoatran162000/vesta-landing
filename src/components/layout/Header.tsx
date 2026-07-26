@@ -26,10 +26,10 @@ const NAV_TABS: {
   { label: "Luyện Kĩ Năng", href: "/luyen-ki-nang", children: SKILL_SUBS },
   {
     label: "Student Portal",
-    href: process.env.NEXT_PUBLIC_STUDENT_URL || "https://student.trankhoademo.io.vn",
+    href: process.env.NEXT_PUBLIC_STUDENT_URL || "https://student.vestaedu.online",
     external: true,
   },
-  { label: "Đặt Lịch Tư Vấn", href: "/dat-lich-tu-van" },
+  { label: "Kiểm Tra Trình Độ Miễn Phí", href: "/dat-lich-tu-van" },
 ];
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
