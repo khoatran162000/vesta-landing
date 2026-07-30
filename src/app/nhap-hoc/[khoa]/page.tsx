@@ -4,13 +4,11 @@ import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Loader2 } from "lucide-react";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-// Whitelist slug hợp lệ
-const VALID = ["ielts4plus", "ielts5plus", "ielts6plus", "ielts7plus", "intensive"] as const;
 export default function NhapHocPage() {
   const { khoa } = useParams<{ khoa: string }>();
   const router = useRouter();
   const slug = String(khoa || "").toLowerCase();
-  const isValid = (VALID as readonly string[]).includes(slug);
+  const isValid = /^[a-z0-9]+$/.test(slug);   // slug hợp lệ = chữ thường + số (tránh path lạ)
   const [html, setHtml] = useState<string | null>(null);
   const [status, setStatus] = useState<"loading" | "ok" | "empty">("loading");
   useEffect(() => {
