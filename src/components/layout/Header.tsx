@@ -16,7 +16,9 @@ const NAV_TABS: {
   children?: { label: string; href: string }[];
 }[] = [
   { label: "Khoá Học", href: "/#courses" },
-  { label: "Blog & Tài Liệu", href: "/blog" },
+  { label: "Tài Liệu", href: "/tai-lieu" },
+  { label: "Chấm Chữa Bài", href: "/cham-bai" },
+  { label: "Blog", href: "/blog" },
   { label: "Đăng Ký", href: "/dang-ky" },
   {
     label: "Thành Tích Học Sinh",
