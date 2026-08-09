@@ -19,9 +19,9 @@ export function Footer() {
       />
 
       <div className="mx-auto max-w-[1200px] px-8 py-8">
-        {/* Tên công ty + MST */}
+        {/* Tên công ty */}
         <h4 className="text-center font-display text-[0.95rem] font-bold uppercase tracking-[0.1em] text-white">
-          Công ty TNHH VESTA UNI — MST: 0111130332
+          Công ty TNHH VESTA UNI
         </h4>
 
         {/* Địa chỉ */}

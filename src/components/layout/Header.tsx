@@ -3,7 +3,9 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { fetchBlock, resolveUrl } from "@/lib/siteContent";
-const SKILL_SUBS = [
+// Blog đứng đầu, rồi tới các kỹ năng — gộp chung 1 thẻ "Blog & Luyện Kĩ Năng"
+const BLOG_SKILL_SUBS = [
+  { label: "Blog", href: "/blog" },
   { label: "Đọc (Reading)", href: "/luyen-ki-nang/doc" },
   { label: "Nghe (Listening)", href: "/luyen-ki-nang/nghe" },
   { label: "Viết (Writing)", href: "/luyen-ki-nang/viet" },
@@ -16,22 +18,21 @@ const NAV_TABS: {
   children?: { label: string; href: string }[];
 }[] = [
   { label: "Khoá Học", href: "/#courses" },
-  { label: "Tài Liệu", href: "/tai-lieu" },
-  { label: "Chấm Chữa Bài", href: "/cham-bai" },
-  { label: "Blog", href: "/blog" },
-  { label: "Đăng Ký", href: "/dang-ky" },
   {
     label: "Thành Tích Học Sinh",
     href: "https://www.facebook.com/media/set?set=a.1026314444164560&type=3",
     external: true,
   },
-  { label: "Luyện Kĩ Năng", href: "/luyen-ki-nang", children: SKILL_SUBS },
+  { label: "Đăng Ký", href: "/dang-ky" },
+  { label: "Blog & Luyện Kĩ Năng", href: "/luyen-ki-nang", children: BLOG_SKILL_SUBS },
+  { label: "Tài Liệu", href: "/tai-lieu" },
+  { label: "Kiểm Tra Miễn Phí", href: "/dat-lich-tu-van" },
+  { label: "Chấm Chữa Viết/Nói", href: "/cham-bai" },
   {
     label: "Student Portal",
     href: process.env.NEXT_PUBLIC_STUDENT_URL || "https://student.vestaedu.online",
     external: true,
   },
-  { label: "Kiểm Tra Trình Độ Miễn Phí", href: "/dat-lich-tu-van" },
 ];
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
