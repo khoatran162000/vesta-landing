@@ -11,7 +11,7 @@ export default function ChamBaiPage() {
   const [essayText, setEssayText] = useState(""); const [speakingLink, setSpeakingLink] = useState("");
   const [name, setName] = useState(""); const [email, setEmail] = useState(""); const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false); const [err, setErr] = useState("");
-  const [done, setDone] = useState<{ code: string } | null>(null);
+  const [done, setDone] = useState<{ code: string; account?: { studentCode?: string | null; tempPassword?: string; isNew?: boolean } | null } | null>(null);
 
   function useThisPrompt(p: Prompt) {
     const header = `ĐỀ BÀI (Task 2 · ${p.topic}):\n${p.prompt}\n\n----- BÀI LÀM CỦA HỌC VIÊN -----\n`;
@@ -25,6 +25,7 @@ export default function ChamBaiPage() {
 
   async function submit() {
     if (!name.trim() || !email.trim()) return setErr("Nhập tên và email");
+    if (!phone.trim()) return setErr("Vui lòng nhập số điện thoại");
     if (gradingType === "essay" && !essayText.trim()) return setErr("Dán bài luận cần chấm");
     if (gradingType === "speaking" && !speakingLink.trim()) return setErr("Dán link ghi âm/video Speaking");
     setLoading(true); setErr("");
@@ -32,7 +33,7 @@ export default function ChamBaiPage() {
       const r = await fetch(`${API}/orders`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ kind: "GRADING", gradingType, essayText: gradingType === "essay" ? essayText : null, speakingLink: gradingType === "speaking" ? speakingLink : null, customerName: name, customerEmail: email, customerPhone: phone }) });
       const j = await r.json();
       if (!j.success) { setErr(j.message || "Lỗi gửi bài"); setLoading(false); return; }
-      setDone({ code: j.data.code });
+      setDone({ code: j.data.code, account: j.data.account || null });
     } catch { setErr("Lỗi kết nối"); }
     setLoading(false);
   }
@@ -54,6 +55,19 @@ export default function ChamBaiPage() {
             <CheckCircle size={48} className="mx-auto mb-3 text-green-600" />
             <h2 className="font-display text-2xl font-bold text-[#1B2A5C]">Đã nhận bài của bạn!</h2>
             <p className="mt-2 text-gray-600">Mã đơn của bạn: <b className="text-[#1B2A5C]">{done.code}</b></p>
+            {done.account?.isNew && done.account?.studentCode && (
+              <div className="mx-auto mt-4 max-w-md rounded-xl border border-[#C9A84C] bg-[#FFFBEF] p-4 text-left">
+                <p className="text-sm font-bold text-[#1B2A5C]">Tài khoản của bạn đã được tạo:</p>
+                <p className="mt-1 text-sm text-[#1B2A5C]">Mã học viên: <b>{done.account.studentCode}</b></p>
+                <p className="text-sm text-[#1B2A5C]">Mật khẩu: <b>{done.account.tempPassword}</b></p>
+                <p className="mt-2 text-xs text-gray-600">Vui lòng <b>lưu lại</b> thông tin này. Đăng nhập tại <a href="https://student.vestaedu.online" target="_blank" rel="noopener noreferrer" className="text-[#1B2A5C] underline">student.vestaedu.online</a> và vào mục <b>Thông báo</b> để nhận bài chữa.</p>
+              </div>
+            )}
+            {done.account && !done.account.isNew && (
+              <div className="mx-auto mt-4 max-w-md rounded-xl border border-[#1B2A5C]/20 bg-[#F0F2F6] p-4 text-left">
+                <p className="text-sm text-[#1B2A5C]">Email này đã có tài khoản (mã <b>{done.account.studentCode}</b>). Đăng nhập tại <a href="https://student.vestaedu.online" target="_blank" rel="noopener noreferrer" className="text-[#1B2A5C] underline">student.vestaedu.online</a> → mục <b>Thông báo</b> để nhận bài chữa.</p>
+              </div>
+            )}
             <p className="mt-2 text-sm text-gray-600">Giáo viên sẽ xem bài và <b>báo giá</b> sớm. Dùng mã đơn + email để <Link href="/tra-cuu-don" className="text-[#1B2A5C] underline">tra cứu đơn</Link> — khi có giá, bạn thanh toán và nhận bài chữa.</p>
             <Link href="/tra-cuu-don" className="mt-5 inline-block rounded-full bg-[#1B2A5C] px-6 py-2.5 font-semibold text-white hover:bg-[#2A3F7A]">Tra cứu đơn ngay</Link>
           </div>
@@ -78,7 +92,7 @@ export default function ChamBaiPage() {
             <div className="mb-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
               <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Họ tên" className="rounded-lg border border-silver/40 px-3 py-2 outline-none focus:border-gold" />
               <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="rounded-lg border border-silver/40 px-3 py-2 outline-none focus:border-gold" />
-              <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="SĐT (tuỳ chọn)" className="rounded-lg border border-silver/40 px-3 py-2 outline-none focus:border-gold" />
+              <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="SĐT *" className="rounded-lg border border-silver/40 px-3 py-2 outline-none focus:border-gold" />
             </div>
             {err && <div className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{err}</div>}
             <button onClick={submit} disabled={loading} className="w-full rounded-lg bg-[#C9A84C] py-3 font-semibold text-white hover:bg-[#A6882E]">{loading ? <span className="inline-flex items-center gap-2"><Loader2 size={16} className="animate-spin" />Đang gửi...</span> : "Gửi bài & nhận mã đơn"}</button>
