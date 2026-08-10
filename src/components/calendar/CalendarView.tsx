@@ -17,12 +17,26 @@ export type Cls = { id: string; kg: string; r: string; w: Week[] };
 export type CalData = Record<string, Cls[]>;
 const LOGO = "/images/logo.jpg"; // logo landing/student (thay vì base64 nặng)
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function CalendarView({ data }: { data: CalData }) {
   const levels = useMemo(() => Object.keys(data || {}), [data]);
   const [lv, setLv] = useState<string>("");
   const [clsId, setClsId] = useState<string>("");
   const [modal, setModal] = useState<Day | null>(null);
+  const [logo, setLogo] = useState<string>(LOGO);
   const TODAY = todayISO();
+
+  // Lấy logo chính thức từ site-content (giống Header) cho nét; lỗi thì giữ ảnh mặc định
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`${API_URL}/site-content/logo`, { cache: "no-store" });
+        const json = await res.json();
+        const url = json?.data?.data?.logoUrl;
+        if (url) setLogo(url.startsWith("http") ? url : `${(API_URL || "").replace(/\/api\/?$/, "")}${url}`);
+      } catch {}
+    })();
+  }, []);
 
   // Mở sẵn 6+ (hoặc level đầu) và lớp đầu tiên — như file gốc
   useEffect(() => {
@@ -41,7 +55,7 @@ export default function CalendarView({ data }: { data: CalData }) {
       <style>{CALENDAR_CSS}</style>
 
       <div className="hero"><div className="hc">
-        <img src={LOGO} alt="VESTA" className="hl" />
+        <img src={logo} alt="VESTA" className="hl" />
         <div className="hero-right">
           <span className="hb">Vesta Uni</span>
           <div className="h-slogan">HỌC NHANH · THI CHẮC · PHÁ TẮC BAND</div>
@@ -76,7 +90,7 @@ export default function CalendarView({ data }: { data: CalData }) {
         {cls?.w.map((wk) => (
           <div key={wk.i}>
             <div className="wh">
-              <span className="wbdg">{wk.i < 0 ? "PRE" : "TUẦN " + wk.i}</span>
+              <span className="wbdg">{wk.i < 0 ? "PRE" : "TUẦN " + (wk.i + 1)}</span>
               <span className="wtl">{wk.i < 0 ? "Trước KG" : "Unit " + wk.u}</span>
               {wk.d[0] && <span className="wdt">{fdShort(wk.d[0].d)} – {fdShort(wk.d[wk.d.length - 1].d)}</span>}
             </div>
