@@ -42,7 +42,12 @@ export default function ChamBaiPage() {
       <div className="mx-auto max-w-[720px]">
         <Link href="/tai-lieu" className="mb-6 inline-flex items-center gap-1.5 text-sm text-[#1B2A5C] hover:underline"><ArrowLeft size={15} />Tài liệu</Link>
         <h1 className="font-display text-3xl font-bold text-[#1B2A5C]">Dịch vụ chấm chữa bài</h1>
-        <p className="mb-6 mt-1 text-[#1B2A5C]/70">Nộp bài Writing hoặc Speaking. Giáo viên VESTA sẽ xem, báo giá và chữa chi tiết. Bạn nhận bài chữa sau khi thanh toán.</p>
+        <div className="mb-6 mt-1 space-y-2 text-[#1B2A5C]/70">
+          <p>Mời bạn dán vào ô dưới bài viết hoặc bài nói, bạn sẽ nhận được bài chấm chữa trong vòng 24 giờ (trừ lễ tết) bạn nhé!</p>
+          <p>Bạn có thể tự chọn đề (cả Task 1 và Task 2 viết, bất kì phần nói nào) hoặc cũng có thể chọn đề dự đoán từ Vesta cho Writing Task 2 dưới đây.</p>
+          <p>Bạn có thể bấm giờ như khi đi thi hoặc không, tùy vào mục đích luyện tập của bạn, nhưng nhất định không nộp bài đã qua chỉnh sửa AI hoặc bài có máy hỗ trợ viết.</p>
+          <p>Mục đích của chấm chữa bài là giúp bạn sửa được vấn đề trước khi đi thi. Vậy nên bạn cần làm thực lực để bộc lộ được hết điểm yếu nhé.</p>
+        </div>
 
         {done ? (
           <div className="rounded-2xl border border-green-200 bg-white p-8 text-center shadow-lg">
