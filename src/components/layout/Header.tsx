@@ -6,6 +6,7 @@ import { fetchBlock, resolveUrl } from "@/lib/siteContent";
 // Blog đứng đầu, rồi tới các kỹ năng — gộp chung 1 thẻ "Blog & Luyện Kĩ Năng"
 const BLOG_SKILL_SUBS = [
   { label: "Blog", href: "/blog" },
+  { label: "Kho đề Writing (400 đề)", href: "/kho-de-viet" },
   { label: "Đọc (Reading)", href: "/luyen-ki-nang/doc" },
   { label: "Nghe (Listening)", href: "/luyen-ki-nang/nghe" },
   { label: "Viết (Writing)", href: "/luyen-ki-nang/viet" },

@@ -1,0 +1,21 @@
+{
+  "note": "Kho đề IELTS Writing Task 2. Mỗi đề: id, topic (chủ đề), prompt (đề bài). Thay/thêm đề tại đây rồi build lại là xong.",
+  "prompts": [
+    { "id": 1, "topic": "Education", "prompt": "Some people believe that studying at university or college is the best route to a successful career, while others believe that it is better to get a job straight after school. Discuss both views and give your own opinion." },
+    { "id": 2, "topic": "Education", "prompt": "In some countries, young people are encouraged to work or travel for a year between finishing high school and starting university studies. Discuss the advantages and disadvantages for young people who decide to do this." },
+    { "id": 3, "topic": "Environment", "prompt": "Some people think that environmental problems should be solved on a global scale while others believe it is better to deal with them nationally. Discuss both views and give your own opinion." },
+    { "id": 4, "topic": "Environment", "prompt": "Many people believe that individuals can do little to improve the environment. Only governments and large companies can make a real difference. To what extent do you agree or disagree?" },
+    { "id": 5, "topic": "Technology", "prompt": "Some people say that the increasing use of computers and mobile phones for communication has had a negative effect on young people's reading and writing skills. To what extent do you agree or disagree?" },
+    { "id": 6, "topic": "Technology", "prompt": "Nowadays many people have access to computers on a wide basis and a large number of children play computer games. What are the positive and negative impacts of playing computer games and what can be done to minimize the bad effects?" },
+    { "id": 7, "topic": "Health", "prompt": "In many countries, the amount of crime is increasing. What do you think are the main causes of crime? How can we deal with those causes?" },
+    { "id": 8, "topic": "Health", "prompt": "Some people think that the best way to improve public health is by increasing the number of sports facilities. Others, however, say this would have little effect on public health and that other measures are required. Discuss both views and give your own opinion." },
+    { "id": 9, "topic": "Work", "prompt": "Some people believe that it is good to share as much information as possible in scientific research, business and the academic world. Others believe that some information is too important or too valuable to be shared freely. Discuss both views and give your own opinion." },
+    { "id": 10, "topic": "Work", "prompt": "Many people work long hours, leaving very little time for leisure activities. Does this situation have more advantages or more disadvantages?" },
+    { "id": 11, "topic": "Society", "prompt": "In some cultures, the old age is highly valued, while in some cultures youth is highly valued. Discuss both these views and give your own opinion." },
+    { "id": 12, "topic": "Society", "prompt": "Some people think that it is more beneficial to take part in sports which are played in teams, like football, while other people think that taking part in individual sports, like tennis or swimming, is better. Discuss both views and give your opinion." },
+    { "id": 13, "topic": "Government", "prompt": "Some people believe that governments should spend money on public services and facilities, but not on the arts. To what extent do you agree or disagree?" },
+    { "id": 14, "topic": "Government", "prompt": "Many governments think that economic progress is their most important goal. Some people, however, think that other types of progress are equally important for a country. Discuss both these views and give your own opinion." },
+    { "id": 15, "topic": "Globalisation", "prompt": "The growth of international tourism has led to a rise in the number of visitors to historical sites. Some people think this has a negative impact on these places. To what extent do you agree or disagree?" },
+    { "id": 16, "topic": "Media", "prompt": "Some people think that the news media nowadays have influenced people's lives in negative ways. To what extent do you agree or disagree?" }
+  ]
+}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Loader2, ArrowLeft, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import WritingPromptPicker, { Prompt } from "@/components/WritingPromptPicker";
 const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5001/api";
 
 export default function ChamBaiPage() {
@@ -11,6 +12,16 @@ export default function ChamBaiPage() {
   const [name, setName] = useState(""); const [email, setEmail] = useState(""); const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false); const [err, setErr] = useState("");
   const [done, setDone] = useState<{ code: string } | null>(null);
+
+  function useThisPrompt(p: Prompt) {
+    const header = `ĐỀ BÀI (Task 2 · ${p.topic}):\n${p.prompt}\n\n----- BÀI LÀM CỦA HỌC VIÊN -----\n`;
+    setEssayText((prev) => (prev.startsWith("ĐỀ BÀI") ? header : header + prev));
+    // đưa con trỏ xuống vùng viết bài
+    setTimeout(() => {
+      const ta = document.querySelector<HTMLTextAreaElement>("#essay-input");
+      if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); ta.scrollTop = ta.scrollHeight; }
+    }, 50);
+  }
 
   async function submit() {
     if (!name.trim() || !email.trim()) return setErr("Nhập tên và email");
@@ -48,8 +59,12 @@ export default function ChamBaiPage() {
               <button onClick={() => setGradingType("speaking")} className={`flex-1 rounded-lg py-2.5 text-sm font-semibold ${gradingType === "speaking" ? "bg-[#1B2A5C] text-white" : "bg-[#F0F2F6] text-[#1B2A5C]"}`}>Speaking (ghi âm)</button>
             </div>
             {gradingType === "essay" ? (
-              <label className="mb-3 block"><span className="mb-1 block text-sm font-bold text-[#1B2A5C]">Bài luận cần chấm</span>
-                <textarea value={essayText} onChange={(e) => setEssayText(e.target.value)} rows={10} placeholder="Dán toàn bộ bài luận vào đây..." className="w-full rounded-lg border border-silver/40 px-3 py-2 outline-none focus:border-gold" /></label>
+              <div className="mb-3">
+                <div className="mb-3"><WritingPromptPicker onUse={useThisPrompt} /></div>
+                <label className="block"><span className="mb-1 block text-sm font-bold text-[#1B2A5C]">Bài luận cần chấm</span>
+                  <textarea id="essay-input" value={essayText} onChange={(e) => setEssayText(e.target.value)} rows={12} placeholder="Dán toàn bộ bài luận vào đây... (hoặc bấm 'Chọn đề viết' ở trên để lấy đề)" className="w-full rounded-lg border border-silver/40 px-3 py-2 outline-none focus:border-gold" /></label>
+                <Link href="/kho-de-viet" className="mt-1 inline-block text-xs text-[#1B2A5C] underline">Xem toàn bộ kho đề →</Link>
+              </div>
             ) : (
               <label className="mb-3 block"><span className="mb-1 block text-sm font-bold text-[#1B2A5C]">Link ghi âm/video Speaking</span>
                 <input value={speakingLink} onChange={(e) => setSpeakingLink(e.target.value)} placeholder="Link Google Drive / YouTube / SoundCloud..." className="w-full rounded-lg border border-silver/40 px-3 py-2 outline-none focus:border-gold" />
