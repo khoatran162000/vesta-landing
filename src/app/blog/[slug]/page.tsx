@@ -59,7 +59,11 @@ function injectHeadingIds(html: string): string {
     el.setAttribute("id", `section-${i}`);
     i++;
   });
-  return doc.body.innerHTML;
+  // Giữ lại <style>/<link> khi nội dung là HTML đầy đủ (chế độ HTML/CSS của editor) — trước đây bị rớt ở <head>
+  const headStyles = Array.from(doc.head.querySelectorAll('style, link[rel="stylesheet"]'))
+    .map((el) => el.outerHTML)
+    .join("\n");
+  return headStyles + doc.body.innerHTML;
 }
 
 /* ────────────────────────── Format date ────────────────────────── */
@@ -326,7 +330,7 @@ export default function BlogDetailPage() {
         {/* Article content — styled via vesta-article class */}
         <article
           ref={contentRef}
-          className="vesta-article"
+          className={/<\s*style[\s>]/i.test(post.content || "") ? "vesta-blog-raw" : "vesta-article"}
           dangerouslySetInnerHTML={{ __html: processedContent }}
         />
 
@@ -391,6 +395,9 @@ export default function BlogDetailPage() {
       {/* ═══════════════════ ARTICLE STYLES ═══════════════════ */}
       <style jsx global>{`
         /* ── Hide scrollbar for sticky nav ── */
+        /* ── Bài dùng HTML/CSS riêng: để CSS của bài tự quyết, chỉ ràng ảnh/iframe không tràn ── */
+        .vesta-blog-raw img { max-width: 100%; height: auto; }
+        .vesta-blog-raw iframe { max-width: 100%; }
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
         }
