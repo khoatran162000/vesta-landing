@@ -50,9 +50,19 @@ export default function TraCuuDonPage() {
               {order.kind === "MATERIAL" ? <>Tài liệu: <b>{order.materialTitle}</b></> : <>Chấm bài: <b>{order.gradingType === "speaking" ? "Speaking" : "Writing"}</b></>}
             </div>
 
-            {/* Đã giao → tải */}
-            {order.status === "DELIVERED" && order.deliverUrl ? (
-              <a href={resolveUrl(order.deliverUrl)} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 py-3 font-semibold text-white hover:bg-green-700"><Download size={17} />Tải tài liệu / bài chữa</a>
+            {/* Đã giao → xem bài chữa (HTML) + tải file */}
+            {order.status === "DELIVERED" ? (
+              <div className="space-y-3">
+                {(order as any).resultHtml && (
+                  <div className="rounded-lg border border-silver/30 bg-white p-4 text-sm leading-relaxed text-[#1a1a2e] [&_img]:max-w-full [&_table]:max-w-full" dangerouslySetInnerHTML={{ __html: (order as any).resultHtml }} />
+                )}
+                {order.deliverUrl && (
+                  <a href={resolveUrl(order.deliverUrl)} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 py-3 font-semibold text-white hover:bg-green-700"><Download size={17} />Tải tài liệu / bài chữa</a>
+                )}
+                {!(order as any).resultHtml && !order.deliverUrl && (
+                  <div className="rounded-lg bg-green-50 p-3 text-center text-sm text-green-700">Đơn đã giao.</div>
+                )}
+              </div>
             ) : order.status === "PAID" ? (
               <div className="rounded-lg bg-blue-50 p-3 text-center text-sm text-blue-700">Đã nhận thanh toán. Đơn đang được xử lý, bạn sẽ tải được file khi hoàn tất.</div>
             ) : order.amount > 0 ? (
