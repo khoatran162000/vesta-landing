@@ -25,7 +25,7 @@ const NAV_TABS: {
     external: true,
   },
   { label: "Đăng Ký", href: "/dang-ky" },
-  { label: "Blog & Luyện Kĩ Năng", href: "/luyen-ki-nang", children: BLOG_SKILL_SUBS },
+  { label: "Tips và Đề Dự Đoán", href: "/luyen-ki-nang", children: BLOG_SKILL_SUBS },
   { label: "Tài Liệu", href: "/tai-lieu" },
   { label: "Kiểm Tra Miễn Phí", href: "/dat-lich-tu-van" },
   { label: "Chấm Chữa Viết/Nói", href: "/cham-bai" },
