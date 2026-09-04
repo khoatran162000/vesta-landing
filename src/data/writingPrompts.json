@@ -1,21 +1,835 @@
 {
   "note": "Kho đề IELTS Writing Task 2. Mỗi đề: id, topic (chủ đề), prompt (đề bài). Thay/thêm đề tại đây rồi build lại là xong.",
   "prompts": [
-    { "id": 1, "topic": "Education", "prompt": "Some people believe that studying at university or college is the best route to a successful career, while others believe that it is better to get a job straight after school. Discuss both views and give your own opinion." },
-    { "id": 2, "topic": "Education", "prompt": "In some countries, young people are encouraged to work or travel for a year between finishing high school and starting university studies. Discuss the advantages and disadvantages for young people who decide to do this." },
-    { "id": 3, "topic": "Environment", "prompt": "Some people think that environmental problems should be solved on a global scale while others believe it is better to deal with them nationally. Discuss both views and give your own opinion." },
-    { "id": 4, "topic": "Environment", "prompt": "Many people believe that individuals can do little to improve the environment. Only governments and large companies can make a real difference. To what extent do you agree or disagree?" },
-    { "id": 5, "topic": "Technology", "prompt": "Some people say that the increasing use of computers and mobile phones for communication has had a negative effect on young people's reading and writing skills. To what extent do you agree or disagree?" },
-    { "id": 6, "topic": "Technology", "prompt": "Nowadays many people have access to computers on a wide basis and a large number of children play computer games. What are the positive and negative impacts of playing computer games and what can be done to minimize the bad effects?" },
-    { "id": 7, "topic": "Health", "prompt": "In many countries, the amount of crime is increasing. What do you think are the main causes of crime? How can we deal with those causes?" },
-    { "id": 8, "topic": "Health", "prompt": "Some people think that the best way to improve public health is by increasing the number of sports facilities. Others, however, say this would have little effect on public health and that other measures are required. Discuss both views and give your own opinion." },
-    { "id": 9, "topic": "Work", "prompt": "Some people believe that it is good to share as much information as possible in scientific research, business and the academic world. Others believe that some information is too important or too valuable to be shared freely. Discuss both views and give your own opinion." },
-    { "id": 10, "topic": "Work", "prompt": "Many people work long hours, leaving very little time for leisure activities. Does this situation have more advantages or more disadvantages?" },
-    { "id": 11, "topic": "Society", "prompt": "In some cultures, the old age is highly valued, while in some cultures youth is highly valued. Discuss both these views and give your own opinion." },
-    { "id": 12, "topic": "Society", "prompt": "Some people think that it is more beneficial to take part in sports which are played in teams, like football, while other people think that taking part in individual sports, like tennis or swimming, is better. Discuss both views and give your opinion." },
-    { "id": 13, "topic": "Government", "prompt": "Some people believe that governments should spend money on public services and facilities, but not on the arts. To what extent do you agree or disagree?" },
-    { "id": 14, "topic": "Government", "prompt": "Many governments think that economic progress is their most important goal. Some people, however, think that other types of progress are equally important for a country. Discuss both these views and give your own opinion." },
-    { "id": 15, "topic": "Globalisation", "prompt": "The growth of international tourism has led to a rise in the number of visitors to historical sites. Some people think this has a negative impact on these places. To what extent do you agree or disagree?" },
-    { "id": 16, "topic": "Media", "prompt": "Some people think that the news media nowadays have influenced people's lives in negative ways. To what extent do you agree or disagree?" }
+    {
+      "id": 1,
+      "topic": "Education",
+      "prompt": "Some people believe that studying at university or college is the best route to a successful career, while others believe that it is better to get a job straight after school. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 2,
+      "topic": "Education",
+      "prompt": "In some countries, young people are encouraged to work or travel for a year between finishing high school and starting university studies. Discuss the advantages and disadvantages for young people who decide to do this."
+    },
+    {
+      "id": 3,
+      "topic": "Environment",
+      "prompt": "Some people think that environmental problems should be solved on a global scale while others believe it is better to deal with them nationally. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 4,
+      "topic": "Environment",
+      "prompt": "Many people believe that individuals can do little to improve the environment. Only governments and large companies can make a real difference. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 5,
+      "topic": "Technology",
+      "prompt": "Some people say that the increasing use of computers and mobile phones for communication has had a negative effect on young people's reading and writing skills. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 6,
+      "topic": "Technology",
+      "prompt": "Nowadays many people have access to computers on a wide basis and a large number of children play computer games. What are the positive and negative impacts of playing computer games and what can be done to minimize the bad effects?"
+    },
+    {
+      "id": 7,
+      "topic": "Health",
+      "prompt": "In many countries, the amount of crime is increasing. What do you think are the main causes of crime? How can we deal with those causes?"
+    },
+    {
+      "id": 8,
+      "topic": "Health",
+      "prompt": "Some people think that the best way to improve public health is by increasing the number of sports facilities. Others, however, say this would have little effect on public health and that other measures are required. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 9,
+      "topic": "Work",
+      "prompt": "Some people believe that it is good to share as much information as possible in scientific research, business and the academic world. Others believe that some information is too important or too valuable to be shared freely. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 10,
+      "topic": "Work",
+      "prompt": "Many people work long hours, leaving very little time for leisure activities. Does this situation have more advantages or more disadvantages?"
+    },
+    {
+      "id": 11,
+      "topic": "Society",
+      "prompt": "In some cultures, the old age is highly valued, while in some cultures youth is highly valued. Discuss both these views and give your own opinion."
+    },
+    {
+      "id": 12,
+      "topic": "Society",
+      "prompt": "Some people think that it is more beneficial to take part in sports which are played in teams, like football, while other people think that taking part in individual sports, like tennis or swimming, is better. Discuss both views and give your opinion."
+    },
+    {
+      "id": 13,
+      "topic": "Government",
+      "prompt": "Some people believe that governments should spend money on public services and facilities, but not on the arts. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 14,
+      "topic": "Government",
+      "prompt": "Many governments think that economic progress is their most important goal. Some people, however, think that other types of progress are equally important for a country. Discuss both these views and give your own opinion."
+    },
+    {
+      "id": 15,
+      "topic": "Globalisation",
+      "prompt": "The growth of international tourism has led to a rise in the number of visitors to historical sites. Some people think this has a negative impact on these places. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 16,
+      "topic": "Media",
+      "prompt": "Some people think that the news media nowadays have influenced people's lives in negative ways. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 17,
+      "topic": "Education & skills",
+      "prompt": "Some people believe that schoolchildren should study a wide range of subjects, while others think they should study only the subjects they are good at or find interesting. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 18,
+      "topic": "Education & skills",
+      "prompt": "Governments should spend more money on vocational education and practical skills training than on university education. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 19,
+      "topic": "Education & skills",
+      "prompt": "Everyone should be entitled to free university education, regardless of their financial background. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 20,
+      "topic": "Education & skills",
+      "prompt": "In many countries, not enough students choose to study science subjects at university. What are the causes of this? What effects might this have on society?"
+    },
+    {
+      "id": 21,
+      "topic": "Education & skills",
+      "prompt": "Schools should focus on academic success and examinations; practical skills such as cooking, sewing and basic repairs are better learned from family and friends. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 22,
+      "topic": "Education & skills",
+      "prompt": "Some people think university students should gain work experience while studying, whereas others believe they should concentrate entirely on their academic studies. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 23,
+      "topic": "Education & skills",
+      "prompt": "Some people think older schoolchildren should study many subjects to develop a broad range of knowledge, while others believe they should study fewer subjects in greater depth. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 24,
+      "topic": "Education & skills",
+      "prompt": "In some countries, universities are increasingly teaching courses in English rather than in the local language. Do the advantages of this development outweigh the disadvantages?"
+    },
+    {
+      "id": 25,
+      "topic": "Education & skills",
+      "prompt": "Mathematical ability is more important in everyday life than communication ability. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 26,
+      "topic": "Education & skills",
+      "prompt": "Schools should prohibit students from using smartphones throughout the school day, including during breaks. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 27,
+      "topic": "Work, careers & the economy",
+      "prompt": "People who choose a career early and remain in it are more likely to have a satisfying working life than those who frequently change jobs. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 28,
+      "topic": "Work, careers & the economy",
+      "prompt": "The only reason people work hard is to earn more money. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 29,
+      "topic": "Work, careers & the economy",
+      "prompt": "Good social skills are as important as academic qualifications for success at work. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 30,
+      "topic": "Work, careers & the economy",
+      "prompt": "Directors and managers of organisations are usually older people. Some believe younger people would make better leaders, while others prefer older leaders. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 31,
+      "topic": "Work, careers & the economy",
+      "prompt": "Professionals such as doctors, nurses and teachers contribute more to society than sports and entertainment personalities and should therefore be paid more. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 32,
+      "topic": "Work, careers & the economy",
+      "prompt": "Working from home is beneficial to employees but not to employers. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 33,
+      "topic": "Work, careers & the economy",
+      "prompt": "Some countries have introduced laws that limit employees’ weekly working hours. Why have these laws been introduced? Is this a positive or negative development?"
+    },
+    {
+      "id": 34,
+      "topic": "Work, careers & the economy",
+      "prompt": "A small number of people earn extremely high salaries. Some think this benefits a country, while others believe governments should limit how much people can earn. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 35,
+      "topic": "Work, careers & the economy",
+      "prompt": "It is better for people to be unemployed than to remain in a job they do not enjoy. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 36,
+      "topic": "Work, careers & the economy",
+      "prompt": "All full-time employees should be allowed to work four days a week without a reduction in pay. Do the advantages of this policy outweigh the disadvantages?"
+    },
+    {
+      "id": 37,
+      "topic": "Technology, AI & data",
+      "prompt": "Some people think robots are essential to humanity’s future development, while others believe they are dangerous and will have negative effects on society. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 38,
+      "topic": "Technology, AI & data",
+      "prompt": "It is now possible to work, shop and communicate online without having face-to-face contact with other people. Is this a positive or negative development?"
+    },
+    {
+      "id": 39,
+      "topic": "Technology, AI & data",
+      "prompt": "Large internet companies and other organisations hold the personal information of millions of individuals. Do the advantages of this situation outweigh the disadvantages?"
+    },
+    {
+      "id": 40,
+      "topic": "Technology, AI & data",
+      "prompt": "Many people put personal information, such as their address, phone number and financial details, online. Is this a positive or negative development?"
+    },
+    {
+      "id": 41,
+      "topic": "Technology, AI & data",
+      "prompt": "Some people think technology has made life unnecessarily complex and that people should lead simpler lives with less technology. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 42,
+      "topic": "Technology, AI & data",
+      "prompt": "There have been many important inventions in human history, but the Internet is the most important. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 43,
+      "topic": "Technology, AI & data",
+      "prompt": "Some people think advances in technology will reduce crime, while others believe they will create new forms of crime. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 44,
+      "topic": "Technology, AI & data",
+      "prompt": "Students can access almost all the information they need online, so public and university libraries are no longer necessary. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 45,
+      "topic": "Technology, AI & data",
+      "prompt": "Mobile phones should be banned in public places such as libraries, shops and public transport. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 46,
+      "topic": "Technology, AI & data",
+      "prompt": "All AI-generated or AI-manipulated content published online should be clearly labelled. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 47,
+      "topic": "Media, news & advertising",
+      "prompt": "Some people think newspapers are the best way to learn about current events, while others believe other media are more effective. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 48,
+      "topic": "Media, news & advertising",
+      "prompt": "News has little connection with most people’s lives, so reading newspapers and watching television news is a waste of time. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 49,
+      "topic": "Media, news & advertising",
+      "prompt": "The media’s tendency to focus on problems and emergencies rather than positive developments is harmful to individuals and society. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 50,
+      "topic": "Media, news & advertising",
+      "prompt": "Publishing detailed information about crimes in newspapers or on television can have harmful consequences and should therefore be restricted. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 51,
+      "topic": "Media, news & advertising",
+      "prompt": "Celebrities who complain about media coverage of their private lives should accept it as part of being famous. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 52,
+      "topic": "Media, news & advertising",
+      "prompt": "People today are surrounded by advertising, which affects what they think is important and has a negative impact on their lives. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 53,
+      "topic": "Media, news & advertising",
+      "prompt": "Research suggests that consumers are less influenced by advertising than they were in the past. Why might this be the case? Is this a positive or negative development?"
+    },
+    {
+      "id": 54,
+      "topic": "Media, news & advertising",
+      "prompt": "All forms of advertising should be banned because they have no useful purpose and may be harmful. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 55,
+      "topic": "Media, news & advertising",
+      "prompt": "News organisations should report more positive stories and fewer negative ones. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 56,
+      "topic": "Media, news & advertising",
+      "prompt": "Social media companies should be required to verify every user’s age, even if this means collecting additional personal information. Do the advantages of this requirement outweigh the disadvantages?"
+    },
+    {
+      "id": 57,
+      "topic": "Environment, energy & waste",
+      "prompt": "One of the best ways to solve environmental problems is to increase the cost of fuel for cars and other vehicles. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 58,
+      "topic": "Environment, energy & waste",
+      "prompt": "The international community must act immediately to ensure that every country reduces its use of fossil fuels such as oil and gas. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 59,
+      "topic": "Environment, energy & waste",
+      "prompt": "Pollution and other environmental damage are unavoidable consequences of a country becoming richer. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 60,
+      "topic": "Environment, energy & waste",
+      "prompt": "Some people believe economic development should be a government’s most important goal, while others think protecting the natural world matters more. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 61,
+      "topic": "Environment, energy & waste",
+      "prompt": "Instead of trying to prevent climate change, people should learn how to live with it. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 62,
+      "topic": "Environment, energy & waste",
+      "prompt": "In many countries, the amount of household waste, especially food packaging, is increasing. What are the causes of this problem? What measures could be taken to reduce it?"
+    },
+    {
+      "id": 63,
+      "topic": "Environment, energy & waste",
+      "prompt": "Manufacturers should be legally required to make electronic products easy and affordable to repair. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 64,
+      "topic": "Environment, energy & waste",
+      "prompt": "Some people think manufacturers and supermarkets should reduce product packaging, while others believe consumers should avoid buying heavily packaged goods. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 65,
+      "topic": "Environment, energy & waste",
+      "prompt": "Some people believe individuals can do little to protect the environment and that only governments and large companies can make a real difference. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 66,
+      "topic": "Environment, energy & waste",
+      "prompt": "Governments should require new AI data centres to use renewable energy or face strict limits on electricity consumption. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 67,
+      "topic": "Cities, housing & transport",
+      "prompt": "Governments should provide free public transport at all times of day and night in order to reduce traffic congestion. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 68,
+      "topic": "Cities, housing & transport",
+      "prompt": "Governments should invest more in public transport than in building new roads. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 69,
+      "topic": "Cities, housing & transport",
+      "prompt": "Traffic and housing problems in major cities could be solved by moving large companies, factories and their employees to the countryside. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 70,
+      "topic": "Cities, housing & transport",
+      "prompt": "Some governments charge drivers a fee for entering busy city centres during peak hours. Is this a positive or negative development?"
+    },
+    {
+      "id": 71,
+      "topic": "Cities, housing & transport",
+      "prompt": "It is important for all towns and cities to have large public outdoor spaces such as parks and squares. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 72,
+      "topic": "Cities, housing & transport",
+      "prompt": "Some people think cities should be designed with tall buildings close together, while others prefer buildings spread over a wider area. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 73,
+      "topic": "Cities, housing & transport",
+      "prompt": "The population of many cities is growing rapidly. What effects does this have on residents? What can be done to maintain their quality of life?"
+    },
+    {
+      "id": 74,
+      "topic": "Cities, housing & transport",
+      "prompt": "Because housing is a basic need, governments should provide free homes for people who cannot afford them. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 75,
+      "topic": "Cities, housing & transport",
+      "prompt": "In many cities, more people are living in homes with little or no private outdoor space. Is this a positive or negative development?"
+    },
+    {
+      "id": 76,
+      "topic": "Cities, housing & transport",
+      "prompt": "City governments should give priority to heat-resilient infrastructure, such as trees, shade and cooling centres, rather than building more roads. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 77,
+      "topic": "Health, food & lifestyle",
+      "prompt": "Some people think governments should make laws about nutrition and food choices, while others believe diet is a matter of personal choice and responsibility. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 78,
+      "topic": "Health, food & lifestyle",
+      "prompt": "Many people know which activities and habits are good for their health, yet they do not adopt them. Why does this happen? What can be done to encourage healthier behaviour?"
+    },
+    {
+      "id": 79,
+      "topic": "Health, food & lifestyle",
+      "prompt": "Increasing the price of unhealthy food is the best way to reduce obesity. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 80,
+      "topic": "Health, food & lifestyle",
+      "prompt": "It is more important to spend public money on promoting healthy lifestyles and preventing illness than on treating people who are already ill. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 81,
+      "topic": "Health, food & lifestyle",
+      "prompt": "Good health is a basic human need, so medical services should not be run by profit-making companies. Do the advantages of private healthcare outweigh the disadvantages?"
+    },
+    {
+      "id": 82,
+      "topic": "Health, food & lifestyle",
+      "prompt": "More people now use the Internet to obtain medical advice instead of consulting a doctor. Why is this happening? Is it a positive or negative development?"
+    },
+    {
+      "id": 83,
+      "topic": "Health, food & lifestyle",
+      "prompt": "Living in a large city is harmful to people’s health. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 84,
+      "topic": "Health, food & lifestyle",
+      "prompt": "Some people believe it is easier to live a healthy lifestyle in the countryside, while others think cities offer greater health benefits. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 85,
+      "topic": "Health, food & lifestyle",
+      "prompt": "Demand for food is increasing worldwide. What are the causes of this? What measures can governments and the international community take to meet the demand sustainably?"
+    },
+    {
+      "id": 86,
+      "topic": "Health, food & lifestyle",
+      "prompt": "For minor health problems, AI health assistants should become the first source of advice before people see a doctor. Do the advantages of this development outweigh the disadvantages?"
+    },
+    {
+      "id": 87,
+      "topic": "Family, children & ageing",
+      "prompt": "Some people believe the family has the strongest influence on a child’s development, while others think factors outside the home play a greater role today. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 88,
+      "topic": "Family, children & ageing",
+      "prompt": "Many parents put a great deal of pressure on their children to succeed. Why do parents do this? Is this a positive or negative development for children?"
+    },
+    {
+      "id": 89,
+      "topic": "Family, children & ageing",
+      "prompt": "In many parts of the world, children are given more freedom than they were in the past. Is this a positive or negative development?"
+    },
+    {
+      "id": 90,
+      "topic": "Family, children & ageing",
+      "prompt": "More fathers are staying at home to care for their children while mothers work outside the home. What are the reasons for this? Is it a positive or negative development?"
+    },
+    {
+      "id": 91,
+      "topic": "Family, children & ageing",
+      "prompt": "Some people believe parents should closely control their children’s behaviour, while others think children should be given greater freedom. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 92,
+      "topic": "Family, children & ageing",
+      "prompt": "Young people should be required to remain in full-time education until they are at least 18 years old. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 93,
+      "topic": "Family, children & ageing",
+      "prompt": "Younger family members should be legally responsible for supporting elderly relatives who cannot care for themselves. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 94,
+      "topic": "Family, children & ageing",
+      "prompt": "Some people think governments should support retired people financially, while others believe individuals should save for their own retirement. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 95,
+      "topic": "Family, children & ageing",
+      "prompt": "In many countries, people are choosing to have children later in life. Why is this happening? Do the advantages of this trend outweigh the disadvantages?"
+    },
+    {
+      "id": 96,
+      "topic": "Family, children & ageing",
+      "prompt": "Children under the age of 16 should not be allowed to have social media accounts. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 97,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "In many countries, imprisonment is the most common response to crime. Better education, however, would be a more effective solution. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 98,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Some people think all lawbreakers should be sent to prison, while others believe people who commit minor offences should do community service instead. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 99,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Many people who have been sent to prison commit crimes again after they are released. Why does this happen? What can be done to reduce reoffending?"
+    },
+    {
+      "id": 100,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Young people who commit serious crimes should be punished in the same way as adults. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 101,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Some people believe most crime is caused by poverty and other social conditions, while others think it is mainly committed by people who are bad by nature. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 102,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Some people think longer prison sentences are the best way to reduce crime, while others believe alternative measures are more effective. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 103,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Crime rates are likely to fall because advances in technology make crimes easier to prevent and solve. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 104,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Individuals should not be allowed to carry guns because this increases crime and violence in society. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 105,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "Many societies are experiencing more antisocial behaviour and a lack of respect for others. What are the causes of this problem? What measures could improve the situation?"
+    },
+    {
+      "id": 106,
+      "topic": "Crime, law & civic responsibility",
+      "prompt": "People who use AI-generated deepfakes to impersonate others should receive the same punishment as those convicted of identity theft. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 107,
+      "topic": "Government, spending & social services",
+      "prompt": "Some people think governments should spend more money on the arts, while others believe health and education should receive greater funding. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 108,
+      "topic": "Government, spending & social services",
+      "prompt": "Governments should pay for large works of art, such as sculptures, to be displayed in public places. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 109,
+      "topic": "Government, spending & social services",
+      "prompt": "Some countries achieve international sporting success by funding specialised facilities for elite athletes rather than sports facilities for everyone. Is this a positive or negative development?"
+    },
+    {
+      "id": 110,
+      "topic": "Government, spending & social services",
+      "prompt": "Some people think governments should devote more public money to the care of older people, while others believe educating the young should be the priority. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 111,
+      "topic": "Government, spending & social services",
+      "prompt": "People should be allowed to keep all the money they earn and should not have to pay tax to the state. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 112,
+      "topic": "Government, spending & social services",
+      "prompt": "Because funding for postgraduate research is limited, governments should support scientific research only, rather than research in less practical subjects. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 113,
+      "topic": "Government, spending & social services",
+      "prompt": "Only government action can solve housing shortages in large cities. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 114,
+      "topic": "Government, spending & social services",
+      "prompt": "Economic growth is often used to measure a country’s success. What other factors should be considered? Do you think any one factor is more important than the others?"
+    },
+    {
+      "id": 115,
+      "topic": "Government, spending & social services",
+      "prompt": "Some people think governments should establish a free public library in every town, while others believe this would waste money because information is available online. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 116,
+      "topic": "Government, spending & social services",
+      "prompt": "Governments should fund retraining for adults whose jobs are likely to change or disappear because of artificial intelligence. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 117,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "Restoring old buildings in city centres is too expensive; governments should spend the money on new housing and roads instead. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 118,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "Important historical objects should be returned to their country of origin. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 119,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "Some people think museums should be enjoyable places that entertain visitors, while others believe their main purpose is education. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 120,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "Many customs and traditional ways of behaving are no longer relevant to modern life and are not worth preserving. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 121,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "Some people think history has little or nothing to teach us, while others believe studying the past helps us understand the present. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 122,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "Some people believe importing foreign films and television programmes benefits a country’s culture, while others think countries should produce their own content. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 123,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "Museums and art galleries should focus on the history and culture of their own country rather than displaying works from other parts of the world. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 124,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "There is no need to attend live performances because watching concerts and shows on television or a computer is better. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 125,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "People continue to value musicians, painters and writers even in an age of advanced science and technology. What can the arts tell us about life that science and technology cannot? Why is this important?"
+    },
+    {
+      "id": 126,
+      "topic": "Culture, arts, history & tradition",
+      "prompt": "AI-generated works should be eligible for the same public funding and prizes as works created entirely by human artists. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 127,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "International travel has become easier and more affordable for ordinary people. Is this a positive or negative development?"
+    },
+    {
+      "id": 128,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "Although some tourists try to protect the culture and environment of the places they visit, it is impossible to be a truly responsible tourist. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 129,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "More people are choosing imported food instead of food produced locally. Why does this happen? What can be done to encourage consumers to buy local food?"
+    },
+    {
+      "id": 130,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "Countries should produce the food their populations consume and import as little as possible. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 131,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "Some people think charities should help only people in their own country, while others believe they should assist anyone in great need, wherever they live. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 132,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "Some people believe the main benefit of international cooperation is environmental protection, while others think its greatest benefit is to business. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 133,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "Most urgent global problems can be solved only through international cooperation. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 134,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "People who move to another country should adopt the local customs and traditions. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 135,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "Tourist destinations and shopping areas around the world are becoming increasingly similar. Why is this happening? Do the advantages of this similarity outweigh the disadvantages?"
+    },
+    {
+      "id": 136,
+      "topic": "Globalisation, tourism & migration",
+      "prompt": "Popular tourist destinations should limit visitor numbers and charge tourist taxes to protect local residents and the environment. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 137,
+      "topic": "Consumerism, business & money",
+      "prompt": "More and more people are buying a wide range of household goods. Is this a positive or negative development?"
+    },
+    {
+      "id": 138,
+      "topic": "Consumerism, business & money",
+      "prompt": "It has been suggested that everyone in the world wants to own a car, a television and a refrigerator. Do the disadvantages of this development outweigh the advantages?"
+    },
+    {
+      "id": 139,
+      "topic": "Consumerism, business & money",
+      "prompt": "It is now easy to apply for and receive a credit card, although some people cannot repay their debts. Do the advantages of credit cards outweigh the disadvantages?"
+    },
+    {
+      "id": 140,
+      "topic": "Consumerism, business & money",
+      "prompt": "Businesses use many methods to increase sales. What methods do they use? Which method is the most effective?"
+    },
+    {
+      "id": 141,
+      "topic": "Consumerism, business & money",
+      "prompt": "People’s shopping habits are influenced more by their age group than by any other factor. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 142,
+      "topic": "Consumerism, business & money",
+      "prompt": "Shops and products are becoming increasingly similar in different countries. Some people see this as positive, while others think it is negative. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 143,
+      "topic": "Consumerism, business & money",
+      "prompt": "If a product is good and meets people’s needs, it will sell without advertising; advertising is therefore unnecessary and merely a form of entertainment. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 144,
+      "topic": "Consumerism, business & money",
+      "prompt": "Many companies sponsor sports in order to advertise themselves. Some people think this benefits sport, while others believe it has disadvantages. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 145,
+      "topic": "Consumerism, business & money",
+      "prompt": "Many companies have replaced traditional hierarchies and clearly defined roles with more flexible organisational structures. Why has this happened? What effects can it have on workers and businesses?"
+    },
+    {
+      "id": 146,
+      "topic": "Consumerism, business & money",
+      "prompt": "Buy Now, Pay Later services should be regulated in the same way as credit cards and other consumer loans. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 147,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Government spending on space exploration is a waste of resources; the money should instead be used to solve urgent problems on Earth. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 148,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Some people think governments should spend money searching for life on other planets, while others believe this money should be used to address problems on Earth. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 149,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Some scientists believe we should send messages into space to contact intelligent life, while others think doing so could be dangerous. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 150,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "The extinction of animal species is a natural process, so people should not try to prevent it. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 151,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Some people think all wild animals should be protected, while others believe only animals that are useful to humans need protection. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 152,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "In the modern world, it is no longer necessary to use animals for food or products such as medicines and clothing. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 153,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Some people believe keeping animals in zoos is wrong, while others think zoos are entertaining and important for conservation. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 154,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Scientific research should be carried out and controlled by governments rather than private companies. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 155,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Some people think scientific research should focus mainly on solving global health problems, while others believe other issues are equally important. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 156,
+      "topic": "Science, space, animals & ethics",
+      "prompt": "Autonomous AI systems should never make the final decision in healthcare or criminal justice. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 157,
+      "topic": "Sport, leisure & society",
+      "prompt": "Some people think dangerous sports should be banned, while others believe individuals should be free to choose any sporting activity. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 158,
+      "topic": "Sport, leisure & society",
+      "prompt": "Hosting a major international sporting event can bring both benefits and problems to a country. Do the advantages of hosting such events outweigh the disadvantages?"
+    },
+    {
+      "id": 159,
+      "topic": "Sport, leisure & society",
+      "prompt": "Sports competitions place young people under too much emotional pressure, so children and teenagers should be banned from taking part in them. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 160,
+      "topic": "Sport, leisure & society",
+      "prompt": "Some people think team sports are more beneficial, while others believe individual sports are better. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 161,
+      "topic": "Sport, leisure & society",
+      "prompt": "The best way to teach children to cooperate is through team sports at school. To what extent do you agree or disagree?"
+    },
+    {
+      "id": 162,
+      "topic": "Sport, leisure & society",
+      "prompt": "Some children take sport very seriously rather than playing only for enjoyment in their free time. Is this a positive or negative development?"
+    },
+    {
+      "id": 163,
+      "topic": "Sport, leisure & society",
+      "prompt": "Sport is increasingly becoming a business, with more companies involved in sporting events. Is this a positive or negative development?"
+    },
+    {
+      "id": 164,
+      "topic": "Sport, leisure & society",
+      "prompt": "Professional sportspeople often earn far more than people in socially important jobs. Some think this is justified, while others believe it is unfair. Discuss both views and give your own opinion."
+    },
+    {
+      "id": 165,
+      "topic": "Sport, leisure & society",
+      "prompt": "Young people now spend less time doing outdoor activities. Why is this happening? What can be done to encourage them to spend more time outside?"
+    },
+    {
+      "id": 166,
+      "topic": "Sport, leisure & society",
+      "prompt": "Some people think competitive video gaming should be included in major international sporting events, while others believe it should not be considered a sport. Discuss both views and give your own opinion."
+    }
   ]
 }
