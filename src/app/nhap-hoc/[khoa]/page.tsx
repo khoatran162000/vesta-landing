@@ -4,6 +4,19 @@ import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Loader2 } from "lucide-react";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+// Chèn CSS chỉ chạy trên mobile: card ưu đãi & khối rộng không cắt chữ, co theo màn hình.
+const MOBILE_FIX = `<style>@media (max-width:640px){
+  html,body{overflow-x:hidden!important}
+  [class*="discount"],[class*="discount"] *{white-space:normal!important;overflow:visible!important;max-width:100%!important;word-break:break-word;overflow-wrap:anywhere}
+  img,figure,table,video{max-width:100%!important;height:auto}
+}</style>`;
+function withMobileFix(h: string): string {
+  if (!h) return h;
+  if (h.includes("MOBILE_FIX_MARKER")) return h;
+  const css = MOBILE_FIX.replace("<style>", "<style>/*MOBILE_FIX_MARKER*/");
+  return /<\/head>/i.test(h) ? h.replace(/<\/head>/i, css + "</head>") : css + h;
+}
 export default function NhapHocPage() {
   const { khoa } = useParams<{ khoa: string }>();
   const router = useRouter();
@@ -18,7 +31,7 @@ export default function NhapHocPage() {
         const res = await fetch(`${API_URL}/site-content/enroll_${slug}`, { cache: "no-store" });
         const json = await res.json();
         const content = json?.data?.data?.html || "";
-        if (content) { setHtml(content); setStatus("ok"); }
+        if (content) { setHtml(withMobileFix(content)); setStatus("ok"); }
         else setStatus("empty");
       } catch { setStatus("empty"); }
     })();
