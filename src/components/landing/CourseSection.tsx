@@ -61,7 +61,7 @@ function FullCourseCard({ course }: { course: any }) {
   const features = Array.isArray(course.features) ? course.features : [];
   return (
     <div className="overflow-hidden rounded-2xl border border-silver/30 bg-white shadow-[0_2px_20px_rgba(15,27,61,0.06)]">
-      <div className="flex items-center justify-between px-6 py-4" style={{ background: course.isSpecial ? "linear-gradient(135deg, #7B1520, #A31D2B)" : "linear-gradient(135deg, #0F1B3D, #1B2A5B)" }}>
+      <div className="flex flex-wrap items-center justify-between gap-2 px-6 py-4" style={{ background: course.isSpecial ? "linear-gradient(135deg, #7B1520, #A31D2B)" : "linear-gradient(135deg, #0F1B3D, #1B2A5B)" }}>
         <h4 className="flex items-center gap-2 font-display text-[1.5rem] font-bold text-white">
           <span>📜</span> {course.title}
         </h4>
@@ -173,7 +173,7 @@ function SupportCard({ course }: { course: any }) {
   const features = Array.isArray(course.features) ? course.features : [];
   return (
     <div className="overflow-hidden rounded-2xl border border-silver/30 bg-white shadow-[0_2px_20px_rgba(15,27,61,0.06)]">
-      <div className="flex items-center justify-between px-6 py-4" style={{ background: "linear-gradient(135deg, #C9A84C, #E8D48B)" }}>
+      <div className="flex flex-wrap items-center justify-between gap-2 px-6 py-4" style={{ background: "linear-gradient(135deg, #C9A84C, #E8D48B)" }}>
         <h4 className="flex items-center gap-2 font-display text-[1.6rem] font-bold text-white">
           <span>🎓</span> {course.title}
         </h4>
