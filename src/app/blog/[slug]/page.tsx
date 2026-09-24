@@ -328,11 +328,21 @@ export default function BlogDetailPage() {
         )}
 
         {/* Article content — styled via vesta-article class */}
-        <article
-          ref={contentRef}
-          className={/<\s*style[\s>]/i.test(post.content || "") ? "vesta-blog-raw" : "vesta-article"}
-          dangerouslySetInnerHTML={{ __html: processedContent }}
-        />
+        {/<\s*style[\s>]|<!doctype|<html[\s>]/i.test(post.content || "") ? (
+          <iframe
+            title={post.title}
+            srcDoc={processedContent}
+            className="block w-full border-0"
+            style={{ minHeight: "70vh" }}
+            onLoad={(e) => { try { const f = e.currentTarget as HTMLIFrameElement; const d = f.contentDocument; if (d && d.body) f.style.height = (Math.max(d.documentElement.scrollHeight, d.body.scrollHeight) + 24) + "px"; } catch {} }}
+          />
+        ) : (
+          <article
+            ref={contentRef}
+            className="vesta-article"
+            dangerouslySetInnerHTML={{ __html: processedContent }}
+          />
+        )}
 
         {/* ── Bottom divider ── */}
         <div className="mx-auto my-14 flex max-w-[600px] items-center justify-center gap-0">
