@@ -328,7 +328,7 @@ export default function BlogDetailPage() {
         )}
 
         {/* Article content — styled via vesta-article class */}
-        {/<\s*style[\s>]|<!doctype|<html[\s>]/i.test(post.content || "") ? (
+        {/<!doctype|<html[\s>]|<\s*style[\s>]|data-vesta|data-layout-root/i.test(post.content || "") ? (
           <iframe
             title={post.title}
             srcDoc={processedContent}
